@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
 [ext_resource path="res://Models/kartScale.glb" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=5]
+[ext_resource path="res://Textures/white.png" type="Texture" id=6]
+[ext_resource path="res://Materials/Shaders/crt.shader" type="Shader" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -41,7 +43,24 @@ radius = 2.54887
 
 [sub_resource type="CubeMesh" id=7]
 
-[sub_resource type="SphereMesh" id=3]
+[sub_resource type="CylinderShape" id=12]
+height = 0.632367
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 7 )
+shader_param/boost = 1.2
+shader_param/grille_opacity = 1.0
+shader_param/scanlines_opacity = 1.0
+shader_param/vignette_opacity = 0.16
+shader_param/scanlines_speed = 1.0
+shader_param/show_grille = true
+shader_param/show_scanlines = true
+shader_param/show_vignette = true
+shader_param/show_curvature = true
+shader_param/screen_size = Vector2( 320, 200 )
+shader_param/aberration_amount = 2.0
+shader_param/move_aberration = true
+shader_param/aberration_speed = 4.0
 
 [node name="VideoGame" type="Spatial"]
 
@@ -79,7 +98,9 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Box2"]
 shape = SubResource( 6 )
 
-[node name="StaticBody" type="StaticBody" parent="Enviroment"]
+[node name="StaticBody" type="StaticBody" parent="Enviroment" groups=[
+"Road",
+]]
 
 [node name="Plane025" type="MeshInstance" parent="Enviroment/StaticBody"]
 transform = Transform( 1.63509, 0, 0, 0, 1, 0, 0, 0, 1.63509, 0, 0, 0 )
@@ -91,15 +112,19 @@ transform = Transform( 1.63509, 0, 0, 0, 1, 0, 0, 0, 1.63509, 0, 0, 0 )
 shape = SubResource( 10 )
 
 [node name="Player" type="Spatial" parent="."]
+transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -70.2505, -0.618116, 6.34651 )
 script = ExtResource( 5 )
+turn_speed = 1.0
+move_speed = 300.0
 
 [node name="Cart" type="Spatial" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
 
-[node name="Cart" type="RigidBody" parent="Player/Cart"]
+[node name="Cart" type="RigidBody" parent="Player/Cart" groups=[
+"Cart",
+]]
 linear_damp = 1.0
 script = ExtResource( 1 )
-move_speed = 300.0
 
 [node name="CollisionShape" type="CollisionShape" parent="Player/Cart/Cart"]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
@@ -107,7 +132,6 @@ shape = SubResource( 4 )
 
 [node name="Visual" type="Spatial" parent="Player/Cart"]
 script = ExtResource( 2 )
-turn_speed = 1.0
 
 [node name="MeshInstance" type="MeshInstance" parent="Player/Cart/Visual"]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
@@ -115,16 +139,39 @@ visible = false
 mesh = SubResource( 7 )
 material/0 = null
 
-[node name="Target" type="MeshInstance" parent="Player/Cart/Visual"]
-transform = Transform( 0.099998, -0.000192427, -0.000598569, 0.000190658, 0.0999994, -0.00029588, 0.000599135, 0.000294732, 0.0999978, 2.18284, 0, 0 )
-mesh = SubResource( 3 )
-material/0 = null
+[node name="Target" type="Position3D" parent="Player/Cart/Visual"]
+transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
 
 [node name="kartScale" parent="Player/Cart/Visual" instance=ExtResource( 3 )]
 
 [node name="CameraTarget" type="Position3D" parent="Player/Cart/Visual"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7432, 1.49567, 0 )
 
+[node name="Wheels" type="Area" parent="Player/Cart/Visual"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Player/Cart/Visual/Wheels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25106, 0 )
+shape = SubResource( 12 )
+
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.62497, 5.25321 )
 script = ExtResource( 4 )
+
+[node name="VideoGameUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="VideoGameUI"]
+material = SubResource( 11 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="body_entered" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_entered"]
+[connection signal="body_exited" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_exited"]
