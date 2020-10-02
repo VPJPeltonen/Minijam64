@@ -33,3 +33,7 @@ func lap_passed():
 
 func finish_race():
 	emit_signal("race_finished")
+
+
+func _on_StartButton_pressed():
+	pass # Replace with function body.
