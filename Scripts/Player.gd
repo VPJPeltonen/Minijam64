@@ -1,6 +1,7 @@
 extends Spatial
 
 signal lap_passed(lap)
+signal race_finished
 
 export var turn_speed = 2.0
 export var move_speed = 80.0
@@ -24,5 +25,11 @@ func checkpoint_passed(num):
 
 #when lap is passed
 func lap_passed():
-	current_lap += 1
-	emit_signal("lap_passed",current_lap)
+	if current_lap == GAME.Laps:
+		finish_race()
+	else:
+		current_lap += 1
+		emit_signal("lap_passed",current_lap)
+
+func finish_race():
+	emit_signal("race_finished")
