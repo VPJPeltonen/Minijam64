@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=5]
 [ext_resource path="res://Textures/white.png" type="Texture" id=6]
 [ext_resource path="res://Materials/Shaders/crt.shader" type="Shader" id=7]
+[ext_resource path="res://Fonts/temp_dynamicfont.tres" type="DynamicFont" id=8]
+[ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=10]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -63,6 +66,42 @@ shader_param/move_aberration = true
 shader_param/aberration_speed = 4.0
 
 [node name="VideoGame" type="Spatial"]
+
+[node name="TrackControls" type="Spatial" parent="."]
+
+[node name="Checkpoint" parent="TrackControls" instance=ExtResource( 9 )]
+
+[node name="Checkpoint2" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( 0.262694, 0, 0.964879, 0, 1, 0, -0.964879, 0, 0.262694, -28.8286, 0, -72.8289 )
+num = 1
+
+[node name="Checkpoint3" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -52.2742, 0, -19.0969 )
+num = 2
+
+[node name="Checkpoint4" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( 0.250566, 0, -0.9681, 0, 1, 0, 0.9681, 0, 0.250566, -1.15039, 0, -13.5485 )
+num = 3
+
+[node name="Checkpoint5" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( 0.066657, 0, -0.997776, 0, 1, 0, 0.997776, 0, 0.066657, 43.8581, 0, -62.7478 )
+num = 4
+
+[node name="Checkpoint6" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 75.0524, 0, 1.85239 )
+num = 5
+
+[node name="Checkpoint7" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( 0.104524, 0.0104651, -0.994467, 0.00258191, 0.999938, 0.0107941, 0.994519, -0.00369587, 0.104491, 38.6637, 0, 55.9638 )
+num = 6
+
+[node name="Checkpoint8" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( 0.401037, 0, -0.916062, 0, 1, 0, 0.916062, 0, 0.401037, -5.07525, 0, 11.2073 )
+num = 7
+
+[node name="Checkpoint9" parent="TrackControls" instance=ExtResource( 9 )]
+transform = Transform( -0.365673, 0, -0.930743, 0, 1, 0, 0.930743, 0, -0.365673, -58.6647, 0, 55.6723 )
+num = 8
 
 [node name="Enviroment" type="Spatial" parent="."]
 
@@ -156,6 +195,7 @@ shape = SubResource( 12 )
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.62497, 5.25321 )
 script = ExtResource( 4 )
+camera_speed = 2.0
 
 [node name="VideoGameUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -164,7 +204,86 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="VideoGameUI"]
+[node name="UI" type="Control" parent="VideoGameUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lap" type="VBoxContainer" parent="VideoGameUI/UI"]
+anchor_left = 0.02
+anchor_right = 0.05
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VideoGameUI/UI/Lap"]
+margin_right = 80.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 8 )
+text = "LAP"
+
+[node name="Amount" type="Label" parent="VideoGameUI/UI/Lap"]
+margin_top = 40.0
+margin_right = 80.0
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 8 )
+text = "1/3"
+
+[node name="Time" type="VBoxContainer" parent="VideoGameUI/UI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -68.5
+margin_right = 68.5
+margin_bottom = 76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VideoGameUI/UI/Time"]
+margin_right = 137.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 8 )
+text = "Time"
+align = 1
+
+[node name="Amount" type="Label" parent="VideoGameUI/UI/Time"]
+margin_top = 40.0
+margin_right = 137.0
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 8 )
+text = "1:00:00"
+align = 1
+
+[node name="Position" type="VBoxContainer" parent="VideoGameUI/UI"]
+anchor_left = 0.98
+anchor_right = 0.98
+margin_left = -137.0
+margin_bottom = 76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VideoGameUI/UI/Position"]
+margin_right = 137.0
+margin_bottom = 36.0
+custom_fonts/font = ExtResource( 8 )
+text = "Pos"
+align = 2
+
+[node name="Pos" type="Label" parent="VideoGameUI/UI/Position"]
+margin_top = 40.0
+margin_right = 137.0
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 8 )
+text = "1st"
+align = 2
+
+[node name="Shader" type="TextureRect" parent="VideoGameUI"]
 material = SubResource( 11 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -173,5 +292,6 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="lap_passed" from="Player" to="VideoGameUI/UI" method="_on_Player_lap_passed"]
 [connection signal="body_entered" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_entered"]
 [connection signal="body_exited" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_exited"]

@@ -4,6 +4,7 @@ var move_speed = 80.0
 var break_speed = 1.0
 
 onready var target = get_parent().get_node("Visual/Target")
+onready var main = get_parent().get_parent()
 
 var on_road = true
 
@@ -16,11 +17,17 @@ func _process(delta):
 		else: 
 			add_central_force(dir * (-delta*move_speed*0.5))
 
+#just passes the function to main player script
+func checkpoint_passed(num):
+	main.checkpoint_passed(num)
+
+#when wheels touch the road
 func _on_Wheels_body_entered(body):
 	if body.is_in_group("Road"):
 		on_road = true
 		print("track")
 
+#when feels leave the road
 func _on_Wheels_body_exited(body):
 	if body.is_in_group("Road"):
 		on_road = false
