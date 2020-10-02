@@ -25,6 +25,10 @@ func _process(delta):
 	if Input.is_action_pressed("break") and on_road:
 		add_central_force(dir * (delta*move_speed*0.25))
 
+func Boost(delta):
+	var dir = global_transform.origin - target.global_transform.origin
+	add_central_force(dir * (-delta*move_speed) * 2)
+
 #just passes the function to main player script
 func checkpoint_passed(num):
 	main.checkpoint_passed(num)
@@ -33,10 +37,8 @@ func checkpoint_passed(num):
 func _on_Wheels_body_entered(body):
 	if body.is_in_group("Road"):
 		on_road = true
-		print("track")
 
 #when feels leave the road
 func _on_Wheels_body_exited(body):
 	if body.is_in_group("Road"):
 		on_road = false
-		print("no track")

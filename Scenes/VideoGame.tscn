@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/AIKart.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Textures/cucaracha_.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Boost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
 [ext_resource path="res://Textures/unknown.png" type="Texture" id=15]
 
@@ -63,6 +64,16 @@ flags = 2
 atlas = ExtResource( 12 )
 region = Rect2( 640, 0, 128, 128 )
 
+[sub_resource type="AtlasTexture" id=21]
+flags = 2
+atlas = ExtResource( 12 )
+region = Rect2( 256, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 2
+atlas = ExtResource( 12 )
+region = Rect2( 768, 0, 128, 128 )
+
 [sub_resource type="AtlasTexture" id=19]
 flags = 2
 atlas = ExtResource( 12 )
@@ -78,6 +89,16 @@ animations = [ {
 "frames": [ SubResource( 18 ) ],
 "loop": true,
 "name": "right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 21 ) ],
+"loop": true,
+"name": "side_left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ) ],
+"loop": true,
+"name": "side_right",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 19 ) ],
@@ -350,7 +371,7 @@ shape = SubResource( 12 )
 transform = Transform( 1.5, 0, 1.49012e-08, 0, 1.5, 0, 1.86265e-08, 0, 1.55, 0, 0.401051, 0 )
 billboard = 2
 frames = SubResource( 20 )
-animation = "forward"
+animation = "side_right"
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.62497, 5.25321 )
@@ -508,9 +529,34 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Boosts" type="Spatial" parent="."]
+
+[node name="Boost" parent="Boosts" instance=ExtResource( 13 )]
+
+[node name="Boost2" parent="Boosts" instance=ExtResource( 13 )]
+transform = Transform( 0.60471, 0, -0.796445, 0, 1, 0, 0.796445, 0, 0.60471, -35.9589, -0.987096, -37.4129 )
+
+[node name="Boost3" parent="Boosts" instance=ExtResource( 13 )]
+transform = Transform( 0.999925, 0, -0.0122345, 0, 1, 0, 0.0122345, 0, 0.999925, 33.1116, -0.987096, -27.9512 )
+
+[node name="Boost4" parent="Boosts" instance=ExtResource( 13 )]
+transform = Transform( 0.999925, 0, -0.0122345, 0, 1, 0, 0.0122345, 0, 0.999925, 55.4837, -0.987096, -31.9429 )
+
+[node name="Boost5" parent="Boosts" instance=ExtResource( 13 )]
+transform = Transform( 0.999925, 0, -0.0122345, 0, 1, 0, 0.0122345, 0, 0.999925, 55.2892, -0.987096, 34.1122 )
+
+[node name="Boost6" parent="Boosts" instance=ExtResource( 13 )]
+transform = Transform( 0.999925, 0, -0.0122345, 0, 1, 0, 0.0122345, 0, 0.999925, 16.6148, -0.987096, 34.8071 )
+
+[node name="Boost7" parent="Boosts" instance=ExtResource( 13 )]
+transform = Transform( 0.76019, 0, -0.6497, 0, 1, 0, 0.6497, 0, 0.76019, -17.6601, -0.987096, 42.5457 )
+
+[node name="Boost8" parent="Boosts" instance=ExtResource( 13 )]
+transform = Transform( 0.952682, 0, 0.303966, 0, 1, 0, -0.303966, 0, 0.952682, -78.8477, -0.987096, 33.5194 )
 [connection signal="lap_passed" from="Player" to="VideoGameUI/UI" method="_on_Player_lap_passed"]
 [connection signal="race_finished" from="Player" to="VideoGameUI/UI" method="_on_Player_race_finished"]
 [connection signal="body_entered" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_entered"]
 [connection signal="body_exited" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_exited"]
-[connection signal="pressed" from="VideoGameUI/UI/Start/StartButton" to="VideoGameUI/UI" method="_on_StartButton_pressed"]
 [connection signal="pressed" from="VideoGameUI/UI/Start/StartButton" to="Player" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="VideoGameUI/UI/Start/StartButton" to="VideoGameUI/UI" method="_on_StartButton_pressed"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Boost.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=23]
+
+[sub_resource type="SpatialMaterial" id=24]
+albedo_color = Color( 0.992157, 1, 0, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=25]
+points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
+
+[node name="Boost" type="Area"]
+transform = Transform( 0.935795, 0, -0.352544, 0, 1, 0, 0.352544, 0, 0.935795, -75.7398, -0.987096, -24.1865 )
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
+mesh = SubResource( 23 )
+material/0 = SubResource( 24 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1.5, 0, 0, 0, 2, 0, 0, 0, 3, 0, 0, 0 )
+shape = SubResource( 25 )
+[connection signal="body_entered" from="." to="." method="_on_Boost_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Boost_body_exited"]
