@@ -3,25 +3,27 @@ extends RigidBody
 var move_speed = 80.0
 var break_speed = 1.0
 
-onready var target = get_parent().get_node("Visual/Target")
-onready var main = get_parent().get_parent()
+var path
+var current_path_node = 0
 
 var on_road = true
+
+onready var target = get_parent().get_node("Visual/Target")
+onready var main = get_parent().get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if !GAME.race_on:
 		return
-	var dir = global_transform.origin - target.global_transform.origin
-	if Input.is_action_pressed("drift"):
-		linear_damp = 0.1
-	else:
-		linear_damp = 2.0
-	if Input.is_action_pressed("accelerate"):
-		if on_road and !Input.is_action_pressed("drift"):
-			add_central_force(dir * (-delta*move_speed))
-		else: 
-			add_central_force(dir * (-delta*move_speed*0.5))
+	var target_pos = path.path_nodes[current_path_node].global_transform.origin
+	var dir = global_transform.origin - target_pos
+	dir = dir.normalized()
+	add_central_force(dir * (-delta*move_speed))
+	if global_transform.origin.distance_to(target_pos) < 3.0:
+		current_path_node += 1
+		if current_path_node > path.path_nodes.size():
+			current_path_node = 0
+	print(global_transform.origin.distance_to(target_pos))
 
 #just passes the function to main player script
 func checkpoint_passed(num):

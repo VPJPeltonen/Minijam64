@@ -11,10 +11,13 @@ var current_checkpoint = 0
 var current_lap = 1
 
 func _ready():
+	set_stats()
+
+func set_stats():
 	$Cart/Cart.move_speed = move_speed
 	$Cart/Cart.break_speed = break_speed
 	$Cart/Visual.turn_speed = turn_speed
-
+	
 # checks if passed checkpoint is next one or last one in the map
 func checkpoint_passed(num):
 	if current_checkpoint == GAME.last_checkpoint and num == 0:
@@ -33,7 +36,6 @@ func lap_passed():
 
 func finish_race():
 	emit_signal("race_finished")
-
 
 func _on_StartButton_pressed():
 	pass # Replace with function body.

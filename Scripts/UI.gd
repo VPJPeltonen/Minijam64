@@ -12,7 +12,14 @@ func _process(delta):
 	if GAME.race_on:
 		race_time += delta
 		$GameView/Time/Amount.text = format_time(race_time)
-	
+	else:
+		if Input.is_action_pressed("ui_accept"):
+			GAME.race_on = true
+			race_time = 0.0
+			$GameView.show()
+			$FinishScreen.hide()
+			$Start.hide()
+		
 func format_time(elapsed):
 	#var elapsed = time_now - time_start
 	var minutes = elapsed / 60.0

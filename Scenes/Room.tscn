@@ -90,11 +90,11 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.000994964, 0, -1, 0, 1, 0, 1, 0, -0.000994964, -1.15964, 1.22248, 0 )
+transform = Transform( -0.000994964, 0, -1, 0, 1, 0, 1, 0, -0.000994964, -0.689501, 0.981261, 0 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 320, 200 )
 render_target_v_flip = true
 
 [node name="VideoGame" parent="Viewport" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.74903, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.37266, 0 )
