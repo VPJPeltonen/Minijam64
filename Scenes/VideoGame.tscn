@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/AIKart.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Textures/cucaracha_.png" type="Texture" id=12]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
 [ext_resource path="res://Textures/unknown.png" type="Texture" id=15]
 
@@ -51,6 +52,39 @@ radius = 2.54887
 
 [sub_resource type="CylinderShape" id=12]
 height = 0.632367
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 2
+atlas = ExtResource( 12 )
+region = Rect2( 384, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 2
+atlas = ExtResource( 12 )
+region = Rect2( 640, 0, 128, 128 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 2
+atlas = ExtResource( 12 )
+region = Rect2( 512, 0, 128, 128 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 19 ) ],
+"loop": true,
+"name": "forward",
+"speed": 5.0
+} ]
 
 [sub_resource type="ShaderMaterial" id=11]
 shader = ExtResource( 7 )
@@ -301,6 +335,7 @@ material/0 = null
 transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
 
 [node name="kartScale" parent="Player/Cart/Visual" instance=ExtResource( 3 )]
+visible = false
 
 [node name="CameraTarget" type="Position3D" parent="Player/Cart/Visual"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7432, 1.49567, 0 )
@@ -310,6 +345,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7432, 1.49567, 0 )
 [node name="CollisionShape" type="CollisionShape" parent="Player/Cart/Visual/Wheels"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25106, 0 )
 shape = SubResource( 12 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Player/Cart/Visual"]
+transform = Transform( 1.5, 0, 1.49012e-08, 0, 1.5, 0, 1.86265e-08, 0, 1.55, 0, 0.401051, 0 )
+billboard = 2
+frames = SubResource( 20 )
+animation = "forward"
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.62497, 5.25321 )
