@@ -23,7 +23,6 @@ func _process(delta):
 		current_path_node += 1
 		if current_path_node > path.path_nodes.size():
 			current_path_node = 0
-	print(global_transform.origin.distance_to(target_pos))
 
 #just passes the function to main player script
 func checkpoint_passed(num):

@@ -22,6 +22,8 @@ func _process(delta):
 			add_central_force(dir * (-delta*move_speed))
 		else: 
 			add_central_force(dir * (-delta*move_speed*0.5))
+	if Input.is_action_pressed("break") and on_road:
+		add_central_force(dir * (delta*move_speed*0.25))
 
 #just passes the function to main player script
 func checkpoint_passed(num):
