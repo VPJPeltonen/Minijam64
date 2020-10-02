@@ -7,7 +7,7 @@
 
 [sub_resource type="PlaneMesh" id=1]
 
-[sub_resource type="ArrayMesh" id=3]
+[sub_resource type="ArrayMesh" id=2]
 resource_name = "TV002"
 surfaces/0 = {
 "aabb": AABB( -1, -1, -1.13623, 2, 2, 2.4825 ),
@@ -22,8 +22,7 @@ surfaces/0 = {
 "vertex_count": 166
 }
 
-[sub_resource type="ArrayMesh" id=2]
-resource_name = "TV003"
+[sub_resource type="ArrayMesh" id=3]
 surfaces/0 = {
 "aabb": AABB( -0.752675, -0.754328, -1.13109, 1.50536, 1.22131, 0.312968 ),
 "array_data": PoolByteArray( 67, 175, 64, 63, 230, 22, 239, 62, 26, 113, 81, 191, 45, 31, 142, 0, 118, 0, 46, 129, 255, 59, 88, 51, 81, 175, 192, 62, 216, 134, 37, 62, 92, 226, 137, 191, 30, 31, 137, 0, 123, 0, 31, 129, 255, 57, 235, 54, 70, 175, 192, 190, 216, 134, 37, 62, 92, 226, 137, 191, 226, 31, 137, 0, 123, 0, 225, 129, 255, 51, 235, 54, 49, 112, 247, 62, 230, 22, 239, 62, 69, 83, 93, 191, 0, 68, 150, 0, 126, 9, 5, 129, 145, 58, 88, 51, 68, 2, 3, 181, 230, 22, 239, 62, 77, 11, 100, 191, 0, 68, 150, 0, 126, 1, 1, 129, 255, 55, 88, 51, 81, 112, 247, 190, 230, 22, 239, 62, 69, 83, 93, 191, 0, 68, 150, 0, 126, 249, 252, 129, 186, 49, 88, 51, 84, 175, 64, 191, 230, 22, 239, 62, 26, 113, 81, 191, 211, 31, 142, 0, 117, 255, 210, 129, 0, 0, 88, 51, 82, 175, 192, 62, 169, 227, 229, 190, 92, 226, 137, 191, 30, 225, 137, 0, 123, 0, 31, 129, 255, 57, 180, 58, 67, 175, 64, 63, 163, 27, 65, 191, 26, 113, 81, 191, 45, 225, 142, 0, 117, 255, 46, 129, 255, 59, 41, 60, 49, 112, 247, 62, 163, 27, 65, 191, 69, 83, 93, 191, 0, 188, 150, 0, 126, 249, 4, 129, 145, 58, 41, 60, 81, 112, 247, 190, 163, 27, 65, 191, 69, 83, 93, 191, 0, 188, 150, 0, 126, 7, 252, 129, 186, 49, 41, 60, 84, 175, 64, 191, 163, 27, 65, 191, 26, 113, 81, 191, 211, 225, 142, 0, 117, 1, 210, 129, 0, 0, 41, 60, 69, 175, 192, 190, 169, 227, 229, 190, 92, 226, 137, 191, 226, 225, 137, 0, 123, 0, 225, 129, 255, 51, 180, 58, 68, 2, 3, 181, 163, 27, 65, 191, 77, 11, 100, 191, 0, 188, 150, 0, 127, 0, 0, 129, 255, 55, 41, 60, 196, 245, 99, 53, 27, 32, 19, 190, 144, 199, 144, 191, 0, 0, 129, 0, 127, 0, 0, 129, 0, 56, 20, 57 ),
@@ -37,9 +36,9 @@ surfaces/0 = {
 "vertex_count": 15
 }
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 
-[sub_resource type="PlaneMesh" id=4]
+[sub_resource type="PlaneMesh" id=5]
 
 [node name="Room" type="Spatial"]
 
@@ -74,19 +73,19 @@ script = ExtResource( 4 )
 
 [node name="TV002" type="MeshInstance" parent="tv3"]
 transform = Transform( -1.66957, 0, 0, 0, -1.66957, 0, 0, 0, -1.1295, 0, 0, 0 )
-mesh = SubResource( 3 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="TV003" type="MeshInstance" parent="tv3"]
 transform = Transform( -1.66957, 0, 0, 0, -1.66957, 0, 0, 0, -1.1295, 0, 0, 0 )
 visible = false
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="Screen" type="MeshInstance" parent="tv3"]
 transform = Transform( 1.2512, -0.00911465, 1.48496e-09, 0, -1.62921e-07, -1, -0.00911463, 1.00033, -1.62975e-07, -0.0270247, 0.216715, 1.03259 )
-material_override = SubResource( 5 )
-mesh = SubResource( 4 )
+material_override = SubResource( 4 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Camera" type="Camera" parent="."]
