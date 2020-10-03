@@ -65,3 +65,9 @@ func _on_StartButton_pressed():
 	$GameView.show()
 	$FinishScreen.hide()
 	$Start.hide()
+
+func _on_Cart_powerup_gained(power_up):
+	$GameView/PowerUP.show()
+
+func _on_Cart_powerup_used():
+	$GameView/PowerUP.hide()

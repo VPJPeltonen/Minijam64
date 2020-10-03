@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Scripts/Countdown.gd" type="Script" id=25]
 [ext_resource path="res://Scripts/Sea.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/Balloon.gd" type="Script" id=27]
+[ext_resource path="res://Scripts/PowerUp.gd" type="Script" id=28]
 
 [sub_resource type="PlaneMesh" id=19]
 
@@ -70,6 +71,18 @@ points = PoolVector3Array( 0, 1, 1, 0.0980171, 1, 0.995185, 0.19509, 1, 0.980785
 [sub_resource type="CapsuleMesh" id=28]
 
 [sub_resource type="CapsuleShape" id=29]
+
+[sub_resource type="CubeMesh" id=30]
+
+[sub_resource type="SpatialMaterial" id=32]
+albedo_color = Color( 0.968627, 1, 0, 1 )
+emission_enabled = true
+emission = Color( 0.992157, 1, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="BoxShape" id=31]
 
 [sub_resource type="SphereShape" id=8]
 radius = 2.54887
@@ -350,6 +363,24 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Balloons/Balloon"]
 shape = SubResource( 29 )
+
+[node name="PowerUps" type="Spatial" parent="Enviroment"]
+
+[node name="PowerUp" type="Area" parent="Enviroment/PowerUps"]
+transform = Transform( 0.31454, -0.25593, 0.292514, 0.315568, 0.387836, 0, -0.226895, 0.184616, 0.405506, -72.3822, 0.902598, -39.6826 )
+script = ExtResource( 28 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Enviroment/PowerUps/PowerUp"]
+transform = Transform( 1, 1.49012e-08, 0, -4.47035e-08, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
+mesh = SubResource( 30 )
+material/0 = SubResource( 32 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Enviroment/PowerUps/PowerUp"]
+shape = SubResource( 31 )
+
+[node name="Timer" type="Timer" parent="Enviroment/PowerUps/PowerUp"]
+wait_time = 8.0
+one_shot = true
 
 [node name="Player" type="Spatial" parent="."]
 transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -75.4193, -0.36215, 20.4547 )
@@ -938,6 +969,18 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="VideoGameUI/UI/GameView/Countdown"]
 one_shot = true
 
+[node name="PowerUP" type="TextureRect" parent="VideoGameUI/UI/GameView"]
+visible = false
+anchor_left = 0.98
+anchor_top = 0.98
+anchor_right = 0.98
+anchor_bottom = 0.98
+margin_left = -32.0
+margin_top = -32.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 12 )
+expand = true
+
 [node name="Start" type="Control" parent="VideoGameUI/UI"]
 visible = false
 anchor_right = 1.0
@@ -1007,8 +1050,12 @@ transform = Transform( 0.952682, 0, 0.303966, 0, 1, 0, -0.303966, 0, 0.952682, -
 [connection signal="body_entered" from="Enviroment/Sea" to="Enviroment/Sea" method="_on_Sea_body_entered"]
 [connection signal="body_entered" from="Enviroment/Balloons/Balloon" to="Enviroment/Balloons/Balloon" method="_on_Balloon_body_entered"]
 [connection signal="body_exited" from="Enviroment/Balloons/Balloon" to="Enviroment/Balloons/Balloon" method="_on_Balloon_body_exited"]
+[connection signal="body_entered" from="Enviroment/PowerUps/PowerUp" to="Enviroment/PowerUps/PowerUp" method="_on_PowerUp_body_entered"]
+[connection signal="timeout" from="Enviroment/PowerUps/PowerUp/Timer" to="Enviroment/PowerUps/PowerUp" method="_on_Timer_timeout"]
 [connection signal="lap_passed" from="Player" to="VideoGameUI/UI" method="_on_Player_lap_passed"]
 [connection signal="race_finished" from="Player" to="VideoGameUI/UI" method="_on_Player_race_finished"]
+[connection signal="powerup_gained" from="Player/Cart/Cart" to="VideoGameUI/UI" method="_on_Cart_powerup_gained"]
+[connection signal="powerup_used" from="Player/Cart/Cart" to="VideoGameUI/UI" method="_on_Cart_powerup_used"]
 [connection signal="timeout" from="Player/Cart/Cart/SpawnTimer" to="Player/Cart/Cart" method="_on_SpawnTimer_timeout"]
 [connection signal="body_entered" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_entered"]
 [connection signal="body_exited" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_exited"]

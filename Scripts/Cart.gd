@@ -1,5 +1,8 @@
 extends RigidBody
 
+signal powerup_gained(power_up)
+signal powerup_used
+
 var move_speed = 80.0
 var break_speed = 1.0
 var forward_vector
@@ -7,6 +10,7 @@ var racer_name
 var kart_type
 var last_checkpoint
 var disabled = false
+var power_up = null
 
 onready var target = get_parent().get_node("Visual/Target")
 onready var main = get_parent().get_parent()
@@ -28,6 +32,13 @@ func _process(delta):
 			add_central_force(forward_vector * (-delta*move_speed*0.5))
 	if Input.is_action_pressed("break") and on_road:
 		add_central_force(forward_vector * (delta*move_speed*0.25))
+	if Input.is_action_just_pressed("use_power_up") and power_up != null:
+		power_up = null
+		emit_signal("powerup_used")
+
+func GainPowerUp(powerup):
+	power_up = powerup
+	emit_signal("powerup_gained",powerup)
 
 func disable():
 	disabled = true

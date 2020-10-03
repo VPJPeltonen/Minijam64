@@ -6,6 +6,7 @@ var racer_name
 var kart_type
 var last_checkpoint
 var disabled = false
+var power_up = null
 
 var path
 var current_path_node = 0
@@ -28,7 +29,10 @@ func _process(delta):
 		current_path_node += 1
 		if current_path_node > path.path_nodes.size()-1:
 			current_path_node = 0
-
+			
+func GainPowerUp(powerup):
+	power_up = powerup
+	
 func disable():
 	disabled = true
 	$SpawnTimer.start()
