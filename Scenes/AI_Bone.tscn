@@ -35,6 +35,8 @@ script = ExtResource( 2 )
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
 shape = SubResource( 1 )
 
+[node name="SpawnTimer" type="Timer" parent="Cart/Cart"]
+
 [node name="Visual" type="Spatial" parent="Cart"]
 script = ExtResource( 3 )
 
@@ -64,5 +66,6 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.393182, 0 )
 billboard = 2
 frames = ExtResource( 5 )
 animation = "forward"
+[connection signal="timeout" from="Cart/Cart/SpawnTimer" to="Cart/Cart" method="_on_SpawnTimer_timeout"]
 [connection signal="body_entered" from="Cart/Visual/Wheels" to="Cart/Cart" method="_on_Wheels_body_entered"]
 [connection signal="body_exited" from="Cart/Visual/Wheels" to="Cart/Cart" method="_on_Wheels_body_exited"]

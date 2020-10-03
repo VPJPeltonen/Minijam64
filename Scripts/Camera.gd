@@ -14,9 +14,9 @@ func _process(delta):
 	if carts.empty():
 		return
 	for cart in carts:
-		var cart_forward = cart.forward_vector
-		if cart_forward == null:
+		if cart == null:
 			return
+		var cart_forward = cart.forward_vector
 		var view_vector = global_transform.origin - cart.global_transform.origin
 		view_vector = view_vector.normalized()
 		cart_forward = cart_forward.normalized()

@@ -6,6 +6,7 @@ var forward_vector
 var racer_name 
 var kart_type
 var last_checkpoint
+var disabled = false
 
 onready var target = get_parent().get_node("Visual/Target")
 onready var main = get_parent().get_parent()
@@ -17,7 +18,7 @@ var on_road = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	forward_vector = global_transform.origin - target.global_transform.origin
-	if !GAME.race_on:
+	if !GAME.race_on or disabled:
 		return
 	check_drift()
 	if Input.is_action_pressed("accelerate"):
@@ -27,6 +28,10 @@ func _process(delta):
 			add_central_force(forward_vector * (-delta*move_speed*0.5))
 	if Input.is_action_pressed("break") and on_road:
 		add_central_force(forward_vector * (delta*move_speed*0.25))
+
+func disable():
+	disabled = true
+	$SpawnTimer.start()
 
 func get_distance_raced():
 	var lap_value = 1000.0
@@ -64,3 +69,7 @@ func _on_Wheels_body_entered(body):
 func _on_Wheels_body_exited(body):
 	if body.is_in_group("Road"):
 		on_road = false
+
+func _on_SpawnTimer_timeout():
+	global_transform.origin = last_checkpoint.get_node("SpawnPoint").global_transform.origin
+	disabled = false

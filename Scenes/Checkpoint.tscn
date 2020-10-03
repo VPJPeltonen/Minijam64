@@ -8,7 +8,6 @@ extents = Vector3( 6.0151, 7.41308, 1 )
 [sub_resource type="CubeMesh" id=2]
 
 [node name="Checkpoint" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -84.2052, 0, 0 )
 script = ExtResource( 1 )
 
 [node name="Area" type="Area" parent="."]
@@ -25,4 +24,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 5.80461, 0, 0, 0, 1, 5.04897, 0, 0 )
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="SpawnPoint" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02367, 0 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

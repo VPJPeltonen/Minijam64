@@ -5,6 +5,7 @@ var break_speed = 1.0
 var racer_name 
 var kart_type
 var last_checkpoint
+var disabled = false
 
 var path
 var current_path_node = 0
@@ -19,7 +20,7 @@ onready var main = get_parent().get_parent()
 func _process(delta):
 	var target_pos = path.path_nodes[current_path_node].global_transform.origin
 	forward_vector = global_transform.origin - target_pos	
-	if !GAME.race_on:
+	if !GAME.race_on or disabled:
 		return
 	var dir = forward_vector.normalized()
 	add_central_force(dir * (-delta*move_speed))
@@ -27,6 +28,10 @@ func _process(delta):
 		current_path_node += 1
 		if current_path_node > path.path_nodes.size()-1:
 			current_path_node = 0
+
+func disable():
+	disabled = true
+	$SpawnTimer.start()
 
 func get_distance_raced():
 	var lap_value = 1000.0
@@ -50,10 +55,12 @@ func checkpoint_passed(num):
 func _on_Wheels_body_entered(body):
 	if body.is_in_group("Road"):
 		on_road = true
-		#print("track")
 
 #when feels leave the road
 func _on_Wheels_body_exited(body):
 	if body.is_in_group("Road"):
 		on_road = false
-	#	print("no track")
+
+func _on_SpawnTimer_timeout():
+	global_transform.origin = last_checkpoint.get_node("SpawnPoint").global_transform.origin
+	disabled = false
