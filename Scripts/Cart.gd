@@ -11,6 +11,7 @@ var kart_type
 var last_checkpoint
 var disabled = false
 var power_up = null
+var boosting = false
 
 onready var target = get_parent().get_node("Visual/Target")
 onready var main = get_parent().get_parent()
@@ -34,7 +35,16 @@ func _process(delta):
 		add_central_force(forward_vector * (delta*move_speed*0.25))
 	if Input.is_action_just_pressed("use_power_up") and power_up != null:
 		power_up = null
+		boosting = true
+		$BoostTimer.start()
 		emit_signal("powerup_used")
+	if boosting:
+		drift_effect1.emitting = true
+		drift_effect2.emitting = true
+		add_central_force(forward_vector * (-delta*move_speed*2))
+	else:
+		drift_effect1.emitting = false
+		drift_effect2.emitting = false
 
 func GainPowerUp(powerup):
 	power_up = powerup
@@ -84,3 +94,6 @@ func _on_Wheels_body_exited(body):
 func _on_SpawnTimer_timeout():
 	global_transform.origin = last_checkpoint.get_node("SpawnPoint").global_transform.origin
 	disabled = false
+
+func _on_BoostTimer_timeout():
+	boosting = false

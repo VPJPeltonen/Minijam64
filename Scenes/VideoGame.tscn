@@ -407,6 +407,10 @@ shape = SubResource( 8 )
 wait_time = 2.0
 one_shot = true
 
+[node name="BoostTimer" type="Timer" parent="Player/Cart/Cart"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Visual" type="Spatial" parent="Player/Cart"]
 script = ExtResource( 2 )
 
@@ -1057,6 +1061,7 @@ transform = Transform( 0.952682, 0, 0.303966, 0, 1, 0, -0.303966, 0, 0.952682, -
 [connection signal="powerup_gained" from="Player/Cart/Cart" to="VideoGameUI/UI" method="_on_Cart_powerup_gained"]
 [connection signal="powerup_used" from="Player/Cart/Cart" to="VideoGameUI/UI" method="_on_Cart_powerup_used"]
 [connection signal="timeout" from="Player/Cart/Cart/SpawnTimer" to="Player/Cart/Cart" method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="Player/Cart/Cart/BoostTimer" to="Player/Cart/Cart" method="_on_BoostTimer_timeout"]
 [connection signal="body_entered" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_entered"]
 [connection signal="body_exited" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_exited"]
 [connection signal="restart" from="VideoGameUI/UI" to="." method="_on_UI_restart"]
