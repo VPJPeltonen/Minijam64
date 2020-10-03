@@ -19,6 +19,7 @@ transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.015225
 script = ExtResource( 1 )
 move_speed = 3000.0
 racer_name = "AI1"
+kart_type = "Bone"
 
 [node name="Cart" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
@@ -46,7 +47,7 @@ material/0 = null
 [node name="Target" type="Position3D" parent="Cart/Visual"]
 transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
 
-[node name="kartScale" type="Spatial" parent="Cart/Visual" instance=ExtResource( 4 )]
+[node name="kartScale" parent="Cart/Visual" instance=ExtResource( 4 )]
 visible = false
 
 [node name="CameraTarget" type="Position3D" parent="Cart/Visual"]

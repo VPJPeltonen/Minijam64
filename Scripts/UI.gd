@@ -26,7 +26,7 @@ func _process(delta):
 func check_race_order():
 	var order = []
 	for racer in racers:
-		order.append([racer.racer_name,racer.get_distance_raced()])
+		order.append([racer.racer_name,racer.get_distance_raced(),racer.kart_type])
 	$GameView/RaceOrder.update_order(order)
 		
 func format_time(elapsed):

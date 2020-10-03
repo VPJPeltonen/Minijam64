@@ -18,6 +18,7 @@ height = 0.632367
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -70.2425, -0.618116, 13.1233 )
 script = ExtResource( 1 )
 move_speed = 1200.0
+kart_type = "Silber"
 
 [node name="Cart" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
@@ -45,7 +46,7 @@ material/0 = null
 [node name="Target" type="Position3D" parent="Cart/Visual"]
 transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
 
-[node name="kartScale" type="Spatial" parent="Cart/Visual" instance=ExtResource( 4 )]
+[node name="kartScale" parent="Cart/Visual" instance=ExtResource( 4 )]
 visible = false
 
 [node name="CameraTarget" type="Position3D" parent="Cart/Visual"]

@@ -4,6 +4,7 @@ var move_speed = 80.0
 var break_speed = 1.0
 var forward_vector
 var racer_name 
+var kart_type
 var last_checkpoint
 
 onready var target = get_parent().get_node("Visual/Target")

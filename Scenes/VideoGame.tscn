@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://Scenes/Boost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
 [ext_resource path="res://Textures/unknown.png" type="Texture" id=15]
+[ext_resource path="res://Textures/cucaracha_icon.png" type="Texture" id=16]
+[ext_resource path="res://Textures/silber_icon.png" type="Texture" id=17]
+[ext_resource path="res://Textures/bone_icon.png" type="Texture" id=18]
 [ext_resource path="res://Scripts/RaceOrderDisplay.gd" type="Script" id=19]
 [ext_resource path="res://Scenes/AIKart_v2.tscn" type="PackedScene" id=21]
 
@@ -300,6 +303,7 @@ transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.015225
 script = ExtResource( 5 )
 move_speed = 1500.0
 racer_name = "Player"
+kart_type = "Cucaracha"
 
 [node name="Cart" type="Spatial" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
@@ -483,6 +487,9 @@ script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+bone_pic = ExtResource( 18 )
+silber_pic = ExtResource( 17 )
+cucaracha_pic = ExtResource( 16 )
 
 [node name="Racer" type="HBoxContainer" parent="VideoGameUI/UI/GameView/RaceOrder"]
 margin_right = 79.0

@@ -18,6 +18,7 @@ height = 0.632367
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -73.2246, -0.618116, 6.34651 )
 script = ExtResource( 3 )
 move_speed = 750.0
+kart_type = "Cucaracha"
 
 [node name="Cart" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )

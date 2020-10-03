@@ -1,6 +1,11 @@
 extends VBoxContainer
 
+export(Texture) var bone_pic
+export(Texture) var silber_pic
+export(Texture) var cucaracha_pic
+
 onready var names = [$Racer/Label,$Racer2/Label,$Racer3/Label,$Racer4/Label]
+onready var pics = [$Racer/TextureRect,$Racer2/TextureRect,$Racer3/TextureRect,$Racer4/TextureRect]
 
 class DistanceSorter:
 	static func sort_ascending(a, b):
@@ -12,3 +17,10 @@ func update_order(order):
 	order.sort_custom(DistanceSorter, "sort_ascending")
 	for i in range(0,4):
 		names[i].text = order[i][0]
+		match order[i][2]:
+			"Bone":
+				pics[i].texture = bone_pic
+			"Silber":
+				pics[i].texture = silber_pic
+			"Cucaracha":
+				pics[i].texture = cucaracha_pic

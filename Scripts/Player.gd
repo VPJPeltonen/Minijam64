@@ -7,6 +7,7 @@ export var turn_speed = 2.0
 export var move_speed = 80.0
 export var break_speed = 1.0
 export var racer_name = "Racer"
+export var kart_type = "basic"
 
 var current_checkpoint = 0
 var current_lap = 1
@@ -30,6 +31,7 @@ func set_stats():
 	$Cart/Cart.break_speed = break_speed
 	$Cart/Visual.turn_speed = turn_speed
 	$Cart/Cart.racer_name = racer_name
+	$Cart/Cart.kart_type = kart_type
 	
 # checks if passed checkpoint is next one or last one in the map
 func checkpoint_passed(num):
