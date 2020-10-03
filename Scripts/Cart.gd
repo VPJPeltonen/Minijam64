@@ -16,9 +16,9 @@ var on_road = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	forward_vector = global_transform.origin - target.global_transform.origin
 	if !GAME.race_on:
 		return
-	forward_vector = global_transform.origin - target.global_transform.origin
 	check_drift()
 	if Input.is_action_pressed("accelerate"):
 		if on_road and !Input.is_action_pressed("drift"):

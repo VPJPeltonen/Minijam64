@@ -7,12 +7,16 @@ onready var cart = get_parent().get_node("Cart/Visual")
 onready var carts = get_tree().get_nodes_in_group("Cart")
 
 func _process(delta):
-	if !GAME.race_on:
-		return
+	#if !GAME.race_on:
+		#return
 	global_transform.origin = global_transform.origin.linear_interpolate(target.global_transform.origin, camera_speed*delta)#target.global_transform.origin
 	look_at(cart.global_transform.origin,Vector3.UP)
+	if carts.empty():
+		return
 	for cart in carts:
 		var cart_forward = cart.forward_vector
+		if cart_forward == null:
+			return
 		var view_vector = global_transform.origin - cart.global_transform.origin
 		view_vector = view_vector.normalized()
 		cart_forward = cart_forward.normalized()

@@ -17,10 +17,10 @@ onready var main = get_parent().get_parent()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var target_pos = path.path_nodes[current_path_node].global_transform.origin
+	forward_vector = global_transform.origin - target_pos	
 	if !GAME.race_on:
 		return
-	var target_pos = path.path_nodes[current_path_node].global_transform.origin
-	forward_vector = global_transform.origin - target_pos
 	var dir = forward_vector.normalized()
 	add_central_force(dir * (-delta*move_speed))
 	if global_transform.origin.distance_to(target_pos) < 3.0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -22,6 +22,9 @@
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=20]
 [ext_resource path="res://Scenes/AIKart_v2.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/AI_Bone.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scripts/VideoGame.gd" type="Script" id=23]
+[ext_resource path="res://Fonts/Egyptaxt.ttf" type="DynamicFontData" id=24]
+[ext_resource path="res://Scripts/Countdown.gd" type="Script" id=25]
 
 [sub_resource type="PlaneMesh" id=19]
 
@@ -80,6 +83,12 @@ material = SubResource( 23 )
 radius = 0.05
 height = 0.05
 
+[sub_resource type="DynamicFont" id=24]
+size = 18
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 24 )
+
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 10 )
 shader_param/boost = 1.2
@@ -97,6 +106,7 @@ shader_param/move_aberration = true
 shader_param/aberration_speed = 4.0
 
 [node name="VideoGame" type="Spatial"]
+script = ExtResource( 23 )
 
 [node name="AIKarts" type="Spatial" parent="."]
 
@@ -386,6 +396,7 @@ __meta__ = {
 }
 
 [node name="FinishScreen" type="Control" parent="VideoGameUI/UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -638,8 +649,28 @@ margin_bottom = 32.0
 custom_fonts/font = ExtResource( 8 )
 text = "1:00:00"
 
+[node name="RestartButton" type="Button" parent="VideoGameUI/UI/FinishScreen"]
+anchor_left = 0.02
+anchor_top = 0.98
+anchor_right = 0.02
+anchor_bottom = 0.98
+margin_left = -0.48
+margin_top = -33.0
+margin_right = 89.52
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VideoGameUI/UI/FinishScreen/RestartButton"]
+anchor_left = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
+text = "Restart"
+align = 1
+valign = 1
+
 [node name="GameView" type="Control" parent="VideoGameUI/UI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -848,6 +879,21 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 8 )
 text = "Racer"
 
+[node name="Countdown" type="Label" parent="VideoGameUI/UI/GameView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 24 )
+text = "3"
+align = 1
+valign = 1
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="VideoGameUI/UI/GameView/Countdown"]
+one_shot = true
+
 [node name="Start" type="Control" parent="VideoGameUI/UI"]
 visible = false
 anchor_right = 1.0
@@ -918,4 +964,6 @@ transform = Transform( 0.952682, 0, 0.303966, 0, 1, 0, -0.303966, 0, 0.952682, -
 [connection signal="race_finished" from="Player" to="VideoGameUI/UI" method="_on_Player_race_finished"]
 [connection signal="body_entered" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_entered"]
 [connection signal="body_exited" from="Player/Cart/Visual/Wheels" to="Player/Cart/Cart" method="_on_Wheels_body_exited"]
+[connection signal="restart" from="VideoGameUI/UI" to="." method="_on_UI_restart"]
+[connection signal="timeout" from="VideoGameUI/UI/GameView/Countdown/Timer" to="VideoGameUI/UI/GameView/Countdown" method="_on_Timer_timeout"]
 [connection signal="pressed" from="VideoGameUI/UI/Start/StartButton" to="VideoGameUI/UI" method="_on_StartButton_pressed"]
