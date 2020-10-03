@@ -3,6 +3,7 @@ extends RigidBody
 var move_speed = 80.0
 var break_speed = 1.0
 var racer_name 
+var last_checkpoint
 
 var path
 var current_path_node = 0
@@ -27,7 +28,11 @@ func _process(delta):
 			current_path_node = 0
 
 func get_distance_raced():
-	return 1
+	var lap_value = 1000.0
+	var distance = main.current_lap*lap_value*2 + main.current_checkpoint * (lap_value/GAME.last_checkpoint)   
+	if last_checkpoint != null:
+		distance += global_transform.origin.distance_to(last_checkpoint.global_transform.origin)
+	return distance
 
 func set_sprite_view(view):
 	get_parent().get_node("Visual/AnimatedSprite3D").play(view)
