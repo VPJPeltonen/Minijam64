@@ -2,6 +2,11 @@ extends Control
 
 signal restart
 
+export(Texture) var nuke
+export(Texture) var boost
+export(Texture) var flame
+export(Texture) var missile
+
 var race_time = 0.0
 var game_UI_mode = "start"
 onready var racers = get_tree().get_nodes_in_group("Cart")
@@ -68,6 +73,15 @@ func _on_StartButton_pressed():
 
 func _on_Cart_powerup_gained(power_up):
 	$GameView/PowerUP.show()
+	match power_up:
+		"boost":
+			$GameView/PowerUP.texture = boost
+		"nuke":
+			$GameView/PowerUP.texture = nuke
+		"flame":
+			$GameView/PowerUP.texture = flame
+		"missile":
+			$GameView/PowerUP.texture = missile
 
 func _on_Cart_powerup_used():
 	$GameView/PowerUP.hide()

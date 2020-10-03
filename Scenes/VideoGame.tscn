@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -28,6 +28,10 @@
 [ext_resource path="res://Scripts/Sea.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/Balloon.gd" type="Script" id=27]
 [ext_resource path="res://Scripts/PowerUp.gd" type="Script" id=28]
+[ext_resource path="res://Textures/flamethrower.png" type="Texture" id=29]
+[ext_resource path="res://Textures/rocket.png" type="Texture" id=30]
+[ext_resource path="res://Textures/nuke.png" type="Texture" id=31]
+[ext_resource path="res://Textures/turbo.png" type="Texture" id=32]
 
 [sub_resource type="PlaneMesh" id=19]
 
@@ -473,6 +477,10 @@ script = ExtResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+nuke = ExtResource( 31 )
+boost = ExtResource( 32 )
+flame = ExtResource( 29 )
+missile = ExtResource( 30 )
 
 [node name="FinishScreen" type="Control" parent="VideoGameUI/UI"]
 visible = false
