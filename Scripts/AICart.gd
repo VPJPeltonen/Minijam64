@@ -25,7 +25,7 @@ func _process(delta):
 	add_central_force(dir * (-delta*move_speed))
 	if global_transform.origin.distance_to(target_pos) < 3.0:
 		current_path_node += 1
-		if current_path_node > path.path_nodes.size():
+		if current_path_node > path.path_nodes.size()-1:
 			current_path_node = 0
 
 func get_distance_raced():
@@ -50,10 +50,10 @@ func checkpoint_passed(num):
 func _on_Wheels_body_entered(body):
 	if body.is_in_group("Road"):
 		on_road = true
-		print("track")
+		#print("track")
 
 #when feels leave the road
 func _on_Wheels_body_exited(body):
 	if body.is_in_group("Road"):
 		on_road = false
-		print("no track")
+	#	print("no track")

@@ -1,39 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Textures/cucaracha_icon.png" type="Texture" id=1]
 [ext_resource path="res://Textures/silber_icon.png" type="Texture" id=2]
 [ext_resource path="res://Textures/bone_icon.png" type="Texture" id=3]
-[ext_resource path="res://Materials/Shaders/crt.shader" type="Shader" id=4]
 [ext_resource path="res://Fonts/temp_dynamicfont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Scripts/RaceOrderDisplay.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=7]
 [ext_resource path="res://Textures/white.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/FinishOrder.gd" type="Script" id=9]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 4 )
-shader_param/boost = 1.2
-shader_param/grille_opacity = 1.0
-shader_param/scanlines_opacity = 1.0
-shader_param/vignette_opacity = 0.16
-shader_param/scanlines_speed = 1.0
-shader_param/show_grille = true
-shader_param/show_scanlines = true
-shader_param/show_vignette = true
-shader_param/show_curvature = true
-shader_param/screen_size = Vector2( 320, 200 )
-shader_param/aberration_amount = 2.0
-shader_param/move_aberration = true
-shader_param/aberration_speed = 4.0
-
-[node name="VideoGameUI" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
@@ -41,14 +17,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FinishScreen" type="Control" parent="UI"]
+[node name="FinishScreen" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/FinishScreen"]
+[node name="Label" type="Label" parent="FinishScreen"]
 anchor_right = 1.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 5 )
@@ -58,7 +34,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FinishOrder" type="VBoxContainer" parent="UI/FinishScreen"]
+[node name="FinishOrder" type="VBoxContainer" parent="FinishScreen"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -67,25 +43,26 @@ margin_left = -39.5
 margin_top = -82.0
 margin_right = 39.5
 margin_bottom = 82.0
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Racer1" type="HBoxContainer" parent="UI/FinishScreen/FinishOrder"]
+[node name="Racer1" type="HBoxContainer" parent="FinishScreen/FinishOrder"]
 margin_right = 79.0
 margin_bottom = 24.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="UI/FinishScreen/FinishOrder/Racer1"]
+[node name="TextureRect" type="TextureRect" parent="FinishScreen/FinishOrder/Racer1"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/FinishScreen/FinishOrder/Racer1/TextureRect"]
+[node name="Pos" type="Label" parent="FinishScreen/FinishOrder/Racer1/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -95,7 +72,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/FinishScreen/FinishOrder/Racer1"]
+[node name="Label" type="Label" parent="FinishScreen/FinishOrder/Racer1"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -103,7 +80,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer2" type="HBoxContainer" parent="UI/FinishScreen/FinishOrder"]
+[node name="Racer2" type="HBoxContainer" parent="FinishScreen/FinishOrder"]
 margin_top = 28.0
 margin_right = 79.0
 margin_bottom = 52.0
@@ -111,14 +88,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="UI/FinishScreen/FinishOrder/Racer2"]
+[node name="TextureRect" type="TextureRect" parent="FinishScreen/FinishOrder/Racer2"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/FinishScreen/FinishOrder/Racer2/TextureRect"]
+[node name="Pos" type="Label" parent="FinishScreen/FinishOrder/Racer2/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -128,7 +105,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/FinishScreen/FinishOrder/Racer2"]
+[node name="Label" type="Label" parent="FinishScreen/FinishOrder/Racer2"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -136,7 +113,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer3" type="HBoxContainer" parent="UI/FinishScreen/FinishOrder"]
+[node name="Racer3" type="HBoxContainer" parent="FinishScreen/FinishOrder"]
 margin_top = 56.0
 margin_right = 79.0
 margin_bottom = 80.0
@@ -144,14 +121,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="UI/FinishScreen/FinishOrder/Racer3"]
+[node name="TextureRect" type="TextureRect" parent="FinishScreen/FinishOrder/Racer3"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/FinishScreen/FinishOrder/Racer3/TextureRect"]
+[node name="Pos" type="Label" parent="FinishScreen/FinishOrder/Racer3/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -161,7 +138,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/FinishScreen/FinishOrder/Racer3"]
+[node name="Label" type="Label" parent="FinishScreen/FinishOrder/Racer3"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -169,7 +146,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer4" type="HBoxContainer" parent="UI/FinishScreen/FinishOrder"]
+[node name="Racer4" type="HBoxContainer" parent="FinishScreen/FinishOrder"]
 margin_top = 84.0
 margin_right = 79.0
 margin_bottom = 108.0
@@ -177,14 +154,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="UI/FinishScreen/FinishOrder/Racer4"]
+[node name="TextureRect" type="TextureRect" parent="FinishScreen/FinishOrder/Racer4"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/FinishScreen/FinishOrder/Racer4/TextureRect"]
+[node name="Pos" type="Label" parent="FinishScreen/FinishOrder/Racer4/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -194,7 +171,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/FinishScreen/FinishOrder/Racer4"]
+[node name="Label" type="Label" parent="FinishScreen/FinishOrder/Racer4"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -202,7 +179,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer5" type="HBoxContainer" parent="UI/FinishScreen/FinishOrder"]
+[node name="Racer5" type="HBoxContainer" parent="FinishScreen/FinishOrder"]
 margin_top = 112.0
 margin_right = 79.0
 margin_bottom = 136.0
@@ -210,14 +187,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="UI/FinishScreen/FinishOrder/Racer5"]
+[node name="TextureRect" type="TextureRect" parent="FinishScreen/FinishOrder/Racer5"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/FinishScreen/FinishOrder/Racer5/TextureRect"]
+[node name="Pos" type="Label" parent="FinishScreen/FinishOrder/Racer5/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -227,7 +204,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/FinishScreen/FinishOrder/Racer5"]
+[node name="Label" type="Label" parent="FinishScreen/FinishOrder/Racer5"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -235,7 +212,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer6" type="HBoxContainer" parent="UI/FinishScreen/FinishOrder"]
+[node name="Racer6" type="HBoxContainer" parent="FinishScreen/FinishOrder"]
 margin_top = 140.0
 margin_right = 79.0
 margin_bottom = 164.0
@@ -243,14 +220,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="UI/FinishScreen/FinishOrder/Racer6"]
+[node name="TextureRect" type="TextureRect" parent="FinishScreen/FinishOrder/Racer6"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/FinishScreen/FinishOrder/Racer6/TextureRect"]
+[node name="Pos" type="Label" parent="FinishScreen/FinishOrder/Racer6/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -260,7 +237,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/FinishScreen/FinishOrder/Racer6"]
+[node name="Label" type="Label" parent="FinishScreen/FinishOrder/Racer6"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -268,31 +245,31 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Time2" type="VBoxContainer" parent="UI/FinishScreen"]
-anchor_left = 1.0
+[node name="Time" type="VBoxContainer" parent="FinishScreen"]
+anchor_top = 1.0
 anchor_right = 1.0
-margin_left = -137.0
-margin_bottom = 76.0
+anchor_bottom = 1.0
+margin_top = -32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="UI/FinishScreen/Time2"]
-margin_right = 137.0
+[node name="Title" type="Label" parent="FinishScreen/Time"]
+margin_right = 1024.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 5 )
-text = "Time"
-align = 2
+text = "Final Time"
+align = 1
 
-[node name="Amount" type="Label" parent="UI/FinishScreen/Time2"]
+[node name="Amount" type="Label" parent="FinishScreen/Time"]
 margin_top = 18.0
-margin_right = 137.0
+margin_right = 1024.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 5 )
 text = "1:00:00"
-align = 2
+align = 1
 
-[node name="GameView" type="Control" parent="UI"]
+[node name="GameView" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -300,7 +277,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Lap" type="VBoxContainer" parent="UI/GameView"]
+[node name="Lap" type="VBoxContainer" parent="GameView"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -40.0
@@ -310,14 +287,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="UI/GameView/Lap"]
+[node name="Title" type="Label" parent="GameView/Lap"]
 margin_right = 80.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 5 )
 text = "LAP"
 align = 1
 
-[node name="Amount" type="Label" parent="UI/GameView/Lap"]
+[node name="Amount" type="Label" parent="GameView/Lap"]
 margin_top = 18.0
 margin_right = 80.0
 margin_bottom = 32.0
@@ -325,7 +302,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "1/3"
 align = 1
 
-[node name="Time" type="VBoxContainer" parent="UI/GameView"]
+[node name="Time" type="VBoxContainer" parent="GameView"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -137.0
@@ -334,14 +311,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="UI/GameView/Time"]
+[node name="Title" type="Label" parent="GameView/Time"]
 margin_right = 137.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 5 )
 text = "Time"
 align = 2
 
-[node name="Amount" type="Label" parent="UI/GameView/Time"]
+[node name="Amount" type="Label" parent="GameView/Time"]
 margin_top = 18.0
 margin_right = 137.0
 margin_bottom = 32.0
@@ -349,7 +326,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "1:00:00"
 align = 2
 
-[node name="Position" type="VBoxContainer" parent="UI/GameView"]
+[node name="Position" type="VBoxContainer" parent="GameView"]
 visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -359,14 +336,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="UI/GameView/Position"]
+[node name="Title" type="Label" parent="GameView/Position"]
 margin_right = 137.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 5 )
 text = "Pos"
 valign = 2
 
-[node name="Pos" type="Label" parent="UI/GameView/Position"]
+[node name="Pos" type="Label" parent="GameView/Position"]
 margin_top = 18.0
 margin_right = 137.0
 margin_bottom = 32.0
@@ -374,7 +351,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "1st"
 valign = 2
 
-[node name="RaceOrder" type="VBoxContainer" parent="UI/GameView"]
+[node name="RaceOrder" type="VBoxContainer" parent="GameView"]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 6 )
@@ -385,18 +362,18 @@ bone_pic = ExtResource( 3 )
 silber_pic = ExtResource( 2 )
 cucaracha_pic = ExtResource( 1 )
 
-[node name="Racer" type="HBoxContainer" parent="UI/GameView/RaceOrder"]
+[node name="Racer" type="HBoxContainer" parent="GameView/RaceOrder"]
 margin_right = 79.0
 margin_bottom = 24.0
 
-[node name="TextureRect" type="TextureRect" parent="UI/GameView/RaceOrder/Racer"]
+[node name="TextureRect" type="TextureRect" parent="GameView/RaceOrder/Racer"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/GameView/RaceOrder/Racer/TextureRect"]
+[node name="Pos" type="Label" parent="GameView/RaceOrder/Racer/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -406,7 +383,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/GameView/RaceOrder/Racer"]
+[node name="Label" type="Label" parent="GameView/RaceOrder/Racer"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -414,19 +391,19 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer2" type="HBoxContainer" parent="UI/GameView/RaceOrder"]
+[node name="Racer2" type="HBoxContainer" parent="GameView/RaceOrder"]
 margin_top = 28.0
 margin_right = 79.0
 margin_bottom = 52.0
 
-[node name="TextureRect" type="TextureRect" parent="UI/GameView/RaceOrder/Racer2"]
+[node name="TextureRect" type="TextureRect" parent="GameView/RaceOrder/Racer2"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/GameView/RaceOrder/Racer2/TextureRect"]
+[node name="Pos" type="Label" parent="GameView/RaceOrder/Racer2/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -435,7 +412,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/GameView/RaceOrder/Racer2"]
+[node name="Label" type="Label" parent="GameView/RaceOrder/Racer2"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -443,19 +420,19 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer3" type="HBoxContainer" parent="UI/GameView/RaceOrder"]
+[node name="Racer3" type="HBoxContainer" parent="GameView/RaceOrder"]
 margin_top = 56.0
 margin_right = 79.0
 margin_bottom = 80.0
 
-[node name="TextureRect" type="TextureRect" parent="UI/GameView/RaceOrder/Racer3"]
+[node name="TextureRect" type="TextureRect" parent="GameView/RaceOrder/Racer3"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/GameView/RaceOrder/Racer3/TextureRect"]
+[node name="Pos" type="Label" parent="GameView/RaceOrder/Racer3/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -465,7 +442,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/GameView/RaceOrder/Racer3"]
+[node name="Label" type="Label" parent="GameView/RaceOrder/Racer3"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -473,19 +450,19 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Racer4" type="HBoxContainer" parent="UI/GameView/RaceOrder"]
+[node name="Racer4" type="HBoxContainer" parent="GameView/RaceOrder"]
 margin_top = 84.0
 margin_right = 79.0
 margin_bottom = 108.0
 
-[node name="TextureRect" type="TextureRect" parent="UI/GameView/RaceOrder/Racer4"]
+[node name="TextureRect" type="TextureRect" parent="GameView/RaceOrder/Racer4"]
 margin_right = 24.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 24, 24 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="Pos" type="Label" parent="UI/GameView/RaceOrder/Racer4/TextureRect"]
+[node name="Pos" type="Label" parent="GameView/RaceOrder/Racer4/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -494,7 +471,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/GameView/RaceOrder/Racer4"]
+[node name="Label" type="Label" parent="GameView/RaceOrder/Racer4"]
 margin_left = 28.0
 margin_top = 5.0
 margin_right = 79.0
@@ -502,7 +479,7 @@ margin_bottom = 19.0
 custom_fonts/font = ExtResource( 5 )
 text = "Racer"
 
-[node name="Start" type="Control" parent="UI"]
+[node name="Start" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -510,7 +487,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartButton" type="Button" parent="UI/Start"]
+[node name="StartButton" type="Button" parent="Start"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -520,7 +497,7 @@ margin_top = -21.5
 margin_right = 86.5
 margin_bottom = 21.5
 
-[node name="Label" type="Label" parent="UI/Start/StartButton"]
+[node name="Label" type="Label" parent="Start/StartButton"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -533,14 +510,4 @@ custom_fonts/font = ExtResource( 5 )
 text = "Press A TO START"
 align = 1
 valign = 1
-
-[node name="Shader" type="TextureRect" parent="."]
-material = SubResource( 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 8 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="pressed" from="UI/Start/StartButton" to="UI" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="Start/StartButton" to="." method="_on_StartButton_pressed"]

@@ -41,6 +41,11 @@ func _on_Player_lap_passed(lap):
 
 func _on_Player_race_finished():
 	GAME.final_time = race_time
+	$FinishScreen/Time/Amount.text = format_time(race_time)
+	var order = []
+	for racer in racers:
+		order.append([racer.racer_name,racer.get_distance_raced(),racer.kart_type])
+	$FinishScreen/FinishOrder.update_order(order)
 	$GameView.hide()
 	$FinishScreen.show()
 	$Start.hide()
