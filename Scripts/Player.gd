@@ -10,9 +10,6 @@ export var break_speed = 1.0
 var current_checkpoint = 0
 var current_lap = 1
 
-onready var drift_effect1 = $Cart/Visual/DriftEffect
-onready var drift_effect2 = $Cart/Visual/DriftEffect2
-
 func _ready():
 	set_stats()
 	

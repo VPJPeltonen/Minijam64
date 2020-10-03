@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
+[ext_resource path="res://Animations/Cockroach.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=5]
 [ext_resource path="res://Textures/white.png" type="Texture" id=6]
@@ -10,7 +11,6 @@
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/AIKart.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Textures/cucaracha_.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/Boost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
 [ext_resource path="res://Textures/unknown.png" type="Texture" id=15]
@@ -50,59 +50,6 @@ radius = 2.54887
 
 [sub_resource type="CylinderShape" id=9]
 height = 0.632367
-
-[sub_resource type="AtlasTexture" id=10]
-flags = 2
-atlas = ExtResource( 12 )
-region = Rect2( 384, 0, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=11]
-flags = 2
-atlas = ExtResource( 12 )
-region = Rect2( 640, 0, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=12]
-flags = 2
-atlas = ExtResource( 12 )
-region = Rect2( 256, 0, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=13]
-flags = 2
-atlas = ExtResource( 12 )
-region = Rect2( 512, 0, 128, 128 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 2
-atlas = ExtResource( 12 )
-region = Rect2( 768, 0, 128, 128 )
-
-[sub_resource type="SpriteFrames" id=15]
-animations = [ {
-"frames": [ SubResource( 10 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 11 ) ],
-"loop": true,
-"name": "right",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 12 ) ],
-"loop": true,
-"name": "side_left",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 13 ) ],
-"loop": true,
-"name": "forward",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ) ],
-"loop": true,
-"name": "side_right",
-"speed": 5.0
-} ]
 
 [sub_resource type="SpatialMaterial" id=17]
 albedo_color = Color( 0.921569, 1, 0, 1 )
@@ -369,7 +316,7 @@ shape = SubResource( 9 )
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Player/Cart/Visual"]
 transform = Transform( 1.5, 0, 1.49012e-08, 0, 1.5, 0, 1.86265e-08, 0, 1.55, 0, 0.401051, 0 )
 billboard = 2
-frames = SubResource( 15 )
+frames = ExtResource( 3 )
 animation = "side_right"
 
 [node name="DriftEffect" type="CPUParticles" parent="Player/Cart/Visual"]

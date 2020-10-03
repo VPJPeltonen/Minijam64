@@ -5,6 +5,7 @@ var break_speed = 1.0
 
 var path
 var current_path_node = 0
+var forward_vector
 
 var on_road = true
 
@@ -16,14 +17,17 @@ func _process(delta):
 	if !GAME.race_on:
 		return
 	var target_pos = path.path_nodes[current_path_node].global_transform.origin
-	var dir = global_transform.origin - target_pos
-	dir = dir.normalized()
+	forward_vector = global_transform.origin - target_pos
+	var dir = forward_vector.normalized()
 	add_central_force(dir * (-delta*move_speed))
 	if global_transform.origin.distance_to(target_pos) < 3.0:
 		current_path_node += 1
 		if current_path_node > path.path_nodes.size():
 			current_path_node = 0
-			
+
+func set_sprite_view(view):
+	get_parent().get_node("Visual/AnimatedSprite3D").play(view)
+	
 func Boost(delta):
 	var dir = global_transform.origin - target.global_transform.origin
 	add_central_force(dir * (-delta*move_speed*2))

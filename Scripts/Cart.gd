@@ -2,6 +2,7 @@ extends RigidBody
 
 var move_speed = 80.0
 var break_speed = 1.0
+var forward_vector
 
 onready var target = get_parent().get_node("Visual/Target")
 onready var main = get_parent().get_parent()
@@ -14,16 +15,18 @@ var on_road = true
 func _process(delta):
 	if !GAME.race_on:
 		return
-	var dir = global_transform.origin - target.global_transform.origin
+	forward_vector = global_transform.origin - target.global_transform.origin
 	check_drift()
 	if Input.is_action_pressed("accelerate"):
 		if on_road and !Input.is_action_pressed("drift"):
-			add_central_force(dir * (-delta*move_speed))
+			add_central_force(forward_vector * (-delta*move_speed))
 		else: 
-			add_central_force(dir * (-delta*move_speed*0.5))
+			add_central_force(forward_vector * (-delta*move_speed*0.5))
 	if Input.is_action_pressed("break") and on_road:
-		add_central_force(dir * (delta*move_speed*0.25))
+		add_central_force(forward_vector * (delta*move_speed*0.25))
 
+func set_sprite_view(view):
+	get_parent().get_node("Visual/AnimatedSprite3D").play(view)
 
 func check_drift():
 	if Input.is_action_pressed("drift"):
@@ -36,8 +39,7 @@ func check_drift():
 		drift_effect2.emitting = false
 		
 func Boost(delta):
-	var dir = global_transform.origin - target.global_transform.origin
-	add_central_force(dir * (-delta*move_speed) * 2)
+	add_central_force(forward_vector * (-delta*move_speed) * 2)
 
 #just passes the function to main player script
 func checkpoint_passed(num):
