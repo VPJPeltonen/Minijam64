@@ -23,6 +23,11 @@ config/icon="res://icon.png"
 
 GAME="*res://Scripts/Singletons/GAME.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [input]
 
 accelerate={

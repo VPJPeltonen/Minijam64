@@ -13,14 +13,18 @@ class DistanceSorter:
 			return true
 		return false
 
-func update_order(order):
-	order.sort_custom(DistanceSorter, "sort_ascending")
+func update_order(racers):
+	racers.sort_custom(DistanceSorter, "sort_ascending")
 	for i in range(0,4):
-		names[i].text = order[i][0]
-		match order[i][2]:
+		names[i].text = racers[i][0]
+		match racers[i][2]:
 			"Bone":
 				pics[i].texture = bone_pic
 			"Silber":
 				pics[i].texture = silber_pic
 			"Cucaracha":
 				pics[i].texture = cucaracha_pic
+
+func get_final_order(racers):
+	racers.sort_custom(DistanceSorter, "sort_ascending")
+	return racers
