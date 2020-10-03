@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/AI.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/AICart.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AICartVisual.gd" type="Script" id=3]
+[ext_resource path="res://Models/kartScale.glb" type="PackedScene" id=4]
+[ext_resource path="res://Animations/bone_spriteframes.tres" type="SpriteFrames" id=5]
+
+[sub_resource type="SphereShape" id=1]
+radius = 3.06085
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="CylinderShape" id=3]
+height = 0.632367
+
+[node name="AI_Bone" type="Spatial"]
+transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -79.005, -0.391546, 6.34651 )
+script = ExtResource( 1 )
+move_speed = 3000.0
+racer_name = "AI1"
+
+[node name="Cart" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
+
+[node name="Cart" type="RigidBody" parent="Cart" groups=[
+"Cart",
+]]
+linear_damp = 2.0
+angular_damp = 1.0
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Cart/Cart"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="Visual" type="Spatial" parent="Cart"]
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Cart/Visual"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Target" type="Position3D" parent="Cart/Visual"]
+transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
+
+[node name="kartScale" type="Spatial" parent="Cart/Visual" instance=ExtResource( 4 )]
+visible = false
+
+[node name="CameraTarget" type="Position3D" parent="Cart/Visual"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7432, 1.49567, 0 )
+
+[node name="Wheels" type="Area" parent="Cart/Visual"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Cart/Visual/Wheels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25106, 0 )
+shape = SubResource( 3 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Cart/Visual"]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.393182, 0 )
+billboard = 2
+frames = ExtResource( 5 )
+animation = "forward"
+[connection signal="body_entered" from="Cart/Visual/Wheels" to="Cart/Cart" method="_on_Wheels_body_entered"]
+[connection signal="body_exited" from="Cart/Visual/Wheels" to="Cart/Cart" method="_on_Wheels_body_exited"]

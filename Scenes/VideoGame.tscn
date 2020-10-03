@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -11,11 +11,12 @@
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/AIKart.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/AIKart_v2.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/AI_Bone.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Boost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
 [ext_resource path="res://Textures/unknown.png" type="Texture" id=15]
-[ext_resource path="res://Scripts/RaceOrderDisplay.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/RaceOrderDisplay.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/AIKart_v2.tscn" type="PackedScene" id=21]
 
 [sub_resource type="PlaneMesh" id=19]
 
@@ -65,6 +66,15 @@ emission_on_uv2 = false
 material = SubResource( 17 )
 size = Vector3( 0.1, 0.1, 0.1 )
 
+[sub_resource type="SpatialMaterial" id=23]
+flags_transparent = true
+albedo_color = Color( 0.364706, 0.364706, 0.364706, 0.603922 )
+
+[sub_resource type="SphereMesh" id=22]
+material = SubResource( 23 )
+radius = 0.05
+height = 0.05
+
 [sub_resource type="ShaderMaterial" id=16]
 shader = ExtResource( 7 )
 shader_param/boost = 1.2
@@ -85,25 +95,26 @@ shader_param/aberration_speed = 4.0
 
 [node name="AIKarts" type="Spatial" parent="."]
 
-[node name="AI" parent="AIKarts" instance=ExtResource( 11 )]
-move_speed = 1500.0
-racer_name = "AI1"
+[node name="AI_Bone" parent="AIKarts" instance=ExtResource( 12 )]
+move_speed = 1600.0
 
-[node name="AI_v2" parent="AIKarts" instance=ExtResource( 12 )]
-racer_name = "AI2"
+[node name="AI_Bone2" parent="AIKarts" instance=ExtResource( 12 )]
+transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -75.3738, -0.391546, 12.9572 )
+move_speed = 1450.0
 
-[node name="AI_v3" parent="AIKarts" instance=ExtResource( 12 )]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -73.2958, -0.618116, 20.9521 )
+[node name="AI_v3" parent="AIKarts" instance=ExtResource( 21 )]
+transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -79.0762, -0.391546, 20.9521 )
+move_speed = 1400.0
 racer_name = "AI3"
 
-[node name="AI_v4" parent="AIKarts" instance=ExtResource( 12 )]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -69.6201, -0.618116, 7.10545 )
-move_speed = 1300.0
+[node name="AI_v4" parent="AIKarts" instance=ExtResource( 21 )]
+transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -75.4005, -0.391546, 7.10545 )
+move_speed = 1400.0
 racer_name = "AI4"
 
 [node name="AI3" parent="AIKarts" instance=ExtResource( 11 )]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -73.1407, -0.618116, 13.1507 )
-move_speed = 775.0
+transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -78.9211, -0.391546, 13.1507 )
+move_speed = 1550.0
 racer_name = "AI5"
 
 [node name="Path" type="Spatial" parent="AIKarts"]
@@ -285,9 +296,9 @@ transform = Transform( 1.63509, 0, 0, 0, 1, 0, 0, 0, 1.63509, 0, 0, 0 )
 shape = SubResource( 7 )
 
 [node name="Player" type="Spatial" parent="."]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -69.5668, -0.618116, 20.4547 )
+transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -75.4193, -0.36215, 20.4547 )
 script = ExtResource( 5 )
-move_speed = 750.0
+move_speed = 1500.0
 racer_name = "Player"
 
 [node name="Cart" type="Spatial" parent="Player"]
@@ -311,7 +322,7 @@ script = ExtResource( 2 )
 transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
 
 [node name="CameraTarget" type="Position3D" parent="Player/Cart/Visual"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7432, 1.49567, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17864, 1.95246, -0.0171661 )
 
 [node name="Wheels" type="Area" parent="Player/Cart/Visual"]
 
@@ -337,10 +348,19 @@ emitting = false
 lifetime = 0.5
 mesh = SubResource( 18 )
 
+[node name="CPUParticles" type="CPUParticles" parent="Player/Cart/Visual"]
+transform = Transform( -0.992397, 0.107065, 0.060699, -0.107065, -0.994247, 0.00326176, 0.060699, -0.00326175, 0.99815, 0.406551, -0.19608, -0.0123901 )
+lifetime = 0.2
+speed_scale = 0.5
+local_coords = false
+mesh = SubResource( 22 )
+gravity = Vector3( 0, -1, 0 )
+color = Color( 0.478431, 0.478431, 0.478431, 1 )
+
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.62497, 5.25321 )
 script = ExtResource( 4 )
-camera_speed = 2.0
+camera_speed = 4.0
 
 [node name="VideoGameUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -459,7 +479,7 @@ valign = 2
 [node name="RaceOrder" type="VBoxContainer" parent="VideoGameUI/UI/GameView"]
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 16 )
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
