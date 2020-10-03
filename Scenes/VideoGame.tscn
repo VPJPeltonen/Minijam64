@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -11,16 +11,17 @@
 [ext_resource path="res://Scenes/Checkpoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/AIKart.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/AIKart_v2.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Boost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
 [ext_resource path="res://Textures/unknown.png" type="Texture" id=15]
 
-[sub_resource type="PlaneMesh" id=1]
+[sub_resource type="PlaneMesh" id=19]
 
-[sub_resource type="ConvexPolygonShape" id=2]
+[sub_resource type="ConvexPolygonShape" id=20]
 points = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, -1 )
 
-[sub_resource type="CylinderMesh" id=3]
+[sub_resource type="CylinderMesh" id=21]
 
 [sub_resource type="CylinderShape" id=4]
 
@@ -86,20 +87,18 @@ shader_param/aberration_speed = 4.0
 [node name="AI" parent="AIKarts" instance=ExtResource( 11 )]
 move_speed = 1500.0
 
-[node name="AI2" parent="AIKarts" instance=ExtResource( 11 )]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -70.2425, -0.618116, 13.1233 )
-move_speed = 1200.0
+[node name="AI_v2" parent="AIKarts" instance=ExtResource( 12 )]
+
+[node name="AI_v3" parent="AIKarts" instance=ExtResource( 12 )]
+transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -73.2958, -0.618116, 20.9521 )
+
+[node name="AI_v4" parent="AIKarts" instance=ExtResource( 12 )]
+transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -69.6201, -0.618116, 7.10545 )
+move_speed = 1300.0
 
 [node name="AI3" parent="AIKarts" instance=ExtResource( 11 )]
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -73.1407, -0.618116, 13.1507 )
 move_speed = 775.0
-
-[node name="AI4" parent="AIKarts" instance=ExtResource( 11 )]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -70.0061, -0.618116, 21.2472 )
-
-[node name="AI5" parent="AIKarts" instance=ExtResource( 11 )]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -72.8954, -0.618116, 21.5249 )
-move_speed = 700.0
 
 [node name="Path" type="Spatial" parent="AIKarts"]
 script = ExtResource( 14 )
@@ -238,18 +237,18 @@ num = 8
 transform = Transform( 96.8206, 0, 0, 0, 1, 0, 0, 0, 89.7575, 0, -0.277594, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Enviroment/Ground"]
-mesh = SubResource( 1 )
+mesh = SubResource( 19 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Ground"]
-shape = SubResource( 2 )
+shape = SubResource( 20 )
 
 [node name="Box" type="StaticBody" parent="Enviroment"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.58378, 0, -6.01886 )
 visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Enviroment/Box"]
-mesh = SubResource( 3 )
+mesh = SubResource( 21 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Box"]
@@ -260,7 +259,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.56372, 0, -6.01886 )
 visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Enviroment/Box2"]
-mesh = SubResource( 3 )
+mesh = SubResource( 21 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Box2"]
@@ -280,7 +279,7 @@ transform = Transform( 1.63509, 0, 0, 0, 1, 0, 0, 0, 1.63509, 0, 0, 0 )
 shape = SubResource( 7 )
 
 [node name="Player" type="Spatial" parent="."]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -70.2505, -0.618116, 6.34651 )
+transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -69.5668, -0.618116, 20.4547 )
 script = ExtResource( 5 )
 move_speed = 750.0
 
