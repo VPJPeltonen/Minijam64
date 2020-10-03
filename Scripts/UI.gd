@@ -1,6 +1,7 @@
 extends Control
 
 var race_time = 0.0
+onready var racers = get_tree().get_nodes_in_group("Cart")
 
 func _ready():
 	$GameView.hide()
@@ -12,7 +13,9 @@ func _process(delta):
 	if GAME.race_on:
 		race_time += delta
 		$GameView/Time/Amount.text = format_time(race_time)
+		check_race_order()
 	else:
+		#fix for ui controls not working on second screen, should find better way
 		if Input.is_action_pressed("ui_accept"):
 			GAME.race_on = true
 			race_time = 0.0
@@ -20,8 +23,13 @@ func _process(delta):
 			$FinishScreen.hide()
 			$Start.hide()
 		
+func check_race_order():
+	var order = []
+	for racer in racers:
+		order.append([racer.racer_name,racer.get_distance_raced()])
+	$GameView/RaceOrder.update_order(order)
+		
 func format_time(elapsed):
-	#var elapsed = time_now - time_start
 	var minutes = elapsed / 60.0
 	var seconds = int(elapsed) % 60
 	var milliseconds = (elapsed - int(elapsed))*1000 

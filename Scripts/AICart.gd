@@ -2,6 +2,7 @@ extends RigidBody
 
 var move_speed = 80.0
 var break_speed = 1.0
+var racer_name 
 
 var path
 var current_path_node = 0
@@ -24,6 +25,9 @@ func _process(delta):
 		current_path_node += 1
 		if current_path_node > path.path_nodes.size():
 			current_path_node = 0
+
+func get_distance_raced():
+	return 1
 
 func set_sprite_view(view):
 	get_parent().get_node("Visual/AnimatedSprite3D").play(view)

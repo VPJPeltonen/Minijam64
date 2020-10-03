@@ -3,6 +3,7 @@ extends RigidBody
 var move_speed = 80.0
 var break_speed = 1.0
 var forward_vector
+var racer_name 
 
 onready var target = get_parent().get_node("Visual/Target")
 onready var main = get_parent().get_parent()
@@ -24,6 +25,9 @@ func _process(delta):
 			add_central_force(forward_vector * (-delta*move_speed*0.5))
 	if Input.is_action_pressed("break") and on_road:
 		add_central_force(forward_vector * (delta*move_speed*0.25))
+
+func get_distance_raced():
+	return 1
 
 func set_sprite_view(view):
 	get_parent().get_node("Visual/AnimatedSprite3D").play(view)

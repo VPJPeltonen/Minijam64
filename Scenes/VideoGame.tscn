@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scenes/Boost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
 [ext_resource path="res://Textures/unknown.png" type="Texture" id=15]
+[ext_resource path="res://Scripts/RaceOrderDisplay.gd" type="Script" id=16]
 
 [sub_resource type="PlaneMesh" id=19]
 
@@ -86,19 +87,24 @@ shader_param/aberration_speed = 4.0
 
 [node name="AI" parent="AIKarts" instance=ExtResource( 11 )]
 move_speed = 1500.0
+racer_name = "AI1"
 
 [node name="AI_v2" parent="AIKarts" instance=ExtResource( 12 )]
+racer_name = "AI2"
 
 [node name="AI_v3" parent="AIKarts" instance=ExtResource( 12 )]
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -73.2958, -0.618116, 20.9521 )
+racer_name = "AI3"
 
 [node name="AI_v4" parent="AIKarts" instance=ExtResource( 12 )]
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -69.6201, -0.618116, 7.10545 )
 move_speed = 1300.0
+racer_name = "AI4"
 
 [node name="AI3" parent="AIKarts" instance=ExtResource( 11 )]
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -73.1407, -0.618116, 13.1507 )
 move_speed = 775.0
+racer_name = "AI5"
 
 [node name="Path" type="Spatial" parent="AIKarts"]
 script = ExtResource( 14 )
@@ -282,6 +288,7 @@ shape = SubResource( 7 )
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -69.5668, -0.618116, 20.4547 )
 script = ExtResource( 5 )
 move_speed = 750.0
+racer_name = "Player"
 
 [node name="Cart" type="Spatial" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
@@ -376,9 +383,10 @@ __meta__ = {
 }
 
 [node name="Lap" type="VBoxContainer" parent="VideoGameUI/UI/GameView"]
-anchor_left = 0.02
-anchor_right = 0.05
-margin_right = 49.28
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -40.0
+margin_right = 40.0
 margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -386,22 +394,23 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="VideoGameUI/UI/GameView/Lap"]
 margin_right = 80.0
-margin_bottom = 19.0
+margin_bottom = 14.0
 custom_fonts/font = ExtResource( 8 )
 text = "LAP"
+align = 1
 
 [node name="Amount" type="Label" parent="VideoGameUI/UI/GameView/Lap"]
-margin_top = 23.0
+margin_top = 18.0
 margin_right = 80.0
-margin_bottom = 42.0
+margin_bottom = 32.0
 custom_fonts/font = ExtResource( 8 )
 text = "1/3"
+align = 1
 
 [node name="Time" type="VBoxContainer" parent="VideoGameUI/UI/GameView"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -68.5
-margin_right = 68.5
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -137.0
 margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -409,42 +418,167 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="VideoGameUI/UI/GameView/Time"]
 margin_right = 137.0
-margin_bottom = 19.0
+margin_bottom = 14.0
 custom_fonts/font = ExtResource( 8 )
 text = "Time"
-align = 1
+align = 2
 
 [node name="Amount" type="Label" parent="VideoGameUI/UI/GameView/Time"]
-margin_top = 23.0
+margin_top = 18.0
 margin_right = 137.0
-margin_bottom = 42.0
+margin_bottom = 32.0
 custom_fonts/font = ExtResource( 8 )
 text = "1:00:00"
-align = 1
+align = 2
 
 [node name="Position" type="VBoxContainer" parent="VideoGameUI/UI/GameView"]
-anchor_left = 0.98
-anchor_right = 0.98
-margin_left = -137.0
-margin_bottom = 76.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -76.0
+margin_right = 137.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="VideoGameUI/UI/GameView/Position"]
 margin_right = 137.0
-margin_bottom = 19.0
+margin_bottom = 14.0
 custom_fonts/font = ExtResource( 8 )
 text = "Pos"
-align = 2
+valign = 2
 
 [node name="Pos" type="Label" parent="VideoGameUI/UI/GameView/Position"]
-margin_top = 23.0
+margin_top = 18.0
 margin_right = 137.0
-margin_bottom = 42.0
+margin_bottom = 32.0
 custom_fonts/font = ExtResource( 8 )
 text = "1st"
-align = 2
+valign = 2
+
+[node name="RaceOrder" type="VBoxContainer" parent="VideoGameUI/UI/GameView"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Racer" type="HBoxContainer" parent="VideoGameUI/UI/GameView/RaceOrder"]
+margin_right = 79.0
+margin_bottom = 24.0
+
+[node name="TextureRect" type="TextureRect" parent="VideoGameUI/UI/GameView/RaceOrder/Racer"]
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Pos" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 79.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 8 )
+text = "Racer"
+
+[node name="Racer2" type="HBoxContainer" parent="VideoGameUI/UI/GameView/RaceOrder"]
+margin_top = 28.0
+margin_right = 79.0
+margin_bottom = 52.0
+
+[node name="TextureRect" type="TextureRect" parent="VideoGameUI/UI/GameView/RaceOrder/Racer2"]
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Pos" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer2/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer2"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 79.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 8 )
+text = "Racer"
+
+[node name="Racer3" type="HBoxContainer" parent="VideoGameUI/UI/GameView/RaceOrder"]
+margin_top = 56.0
+margin_right = 79.0
+margin_bottom = 80.0
+
+[node name="TextureRect" type="TextureRect" parent="VideoGameUI/UI/GameView/RaceOrder/Racer3"]
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Pos" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer3/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "3
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer3"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 79.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 8 )
+text = "Racer"
+
+[node name="Racer4" type="HBoxContainer" parent="VideoGameUI/UI/GameView/RaceOrder"]
+margin_top = 84.0
+margin_right = 79.0
+margin_bottom = 108.0
+
+[node name="TextureRect" type="TextureRect" parent="VideoGameUI/UI/GameView/RaceOrder/Racer4"]
+margin_right = 24.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Pos" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer4/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VideoGameUI/UI/GameView/RaceOrder/Racer4"]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 79.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 8 )
+text = "Racer"
 
 [node name="Start" type="Control" parent="VideoGameUI/UI"]
 anchor_right = 1.0
