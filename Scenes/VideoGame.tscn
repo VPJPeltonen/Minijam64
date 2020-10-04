@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -54,6 +54,10 @@
 [ext_resource path="res://Particles/Fireparticles.tres" type="ArrayMesh" id=52]
 [ext_resource path="res://Scenes/Missile.tscn" type="PackedScene" id=53]
 [ext_resource path="res://Scenes/Nuke.tscn" type="PackedScene" id=54]
+[ext_resource path="res://Scenes/AI_v4.tscn" type="PackedScene" id=55]
+[ext_resource path="res://Textures/chingo avatar.png" type="Texture" id=56]
+[ext_resource path="res://Animations/Chingo_view.tres" type="Texture" id=57]
+[ext_resource path="res://Animations/chino_spriteframes.tres" type="SpriteFrames" id=59]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.2735, 21.6738, 1 )
@@ -308,10 +312,7 @@ transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512,
 move_speed = 2400.0
 racer_name = "Silber 1"
 
-[node name="AI_v4" parent="AIKarts" instance=ExtResource( 21 )]
-transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -67.7546, -2.47835, 7.10545 )
-move_speed = 2400.0
-racer_name = "Silber 2"
+[node name="AI_v4" parent="AIKarts" instance=ExtResource( 55 )]
 
 [node name="AI3" parent="AIKarts" instance=ExtResource( 11 )]
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -71.2752, -2.47835, 13.1507 )
@@ -627,6 +628,7 @@ coblin = ExtResource( 47 )
 cucaracha = ExtResource( 3 )
 silber = ExtResource( 48 )
 bone = ExtResource( 49 )
+chingo = ExtResource( 59 )
 
 [node name="Cart" type="Spatial" parent="Player"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.137276, -1.63345, -7.57265 )
@@ -712,16 +714,15 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Flame" type="Spatial" parent="Player/Cart/Visual/Flame"]
-visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Player/Cart/Visual/Flame/Flame"]
 transform = Transform( 0.0267642, -2.59934, -4.23486e-07, 0, -9.63021e-08, 0.591099, -1.72163, 0.0267648, 4.36055e-09, 3.20449, -4.76837e-07, -0.0976257 )
+visible = false
 mesh = SubResource( 34 )
 material/0 = SubResource( 35 )
 
 [node name="CPUParticles" type="CPUParticles" parent="Player/Cart/Visual/Flame/Flame"]
 transform = Transform( 0.614643, -0.788805, 0, 0.788805, 0.614643, 0, 0, 0, 1, 0, 0, 0 )
-emitting = false
 mesh = ExtResource( 52 )
 spread = 0.0
 initial_velocity = 2.0
@@ -735,7 +736,6 @@ scale_amount_curve = SubResource( 37 )
 
 [node name="CPUParticles2" type="CPUParticles" parent="Player/Cart/Visual/Flame/Flame"]
 transform = Transform( 0.603025, -0.773895, 0.193515, 0.788805, 0.614643, 0, -0.118943, 0.152646, 0.981097, 0, 0, 0 )
-emitting = false
 mesh = ExtResource( 52 )
 spread = 0.0
 initial_velocity = 2.0
@@ -749,7 +749,6 @@ scale_amount_curve = SubResource( 37 )
 
 [node name="CPUParticles3" type="CPUParticles" parent="Player/Cart/Visual/Flame/Flame"]
 transform = Transform( 0.611281, -0.78449, -0.104459, 0.788805, 0.614643, 0, 0.064205, -0.0823978, 0.994529, 0, 0, 0 )
-emitting = false
 mesh = ExtResource( 52 )
 spread = 0.0
 initial_velocity = 2.0
@@ -798,6 +797,7 @@ coblin_view = ExtResource( 43 )
 cucaracha_view = ExtResource( 45 )
 silber_view = ExtResource( 46 )
 bone_view = ExtResource( 44 )
+chingo_view = ExtResource( 57 )
 
 [node name="FinishScreen" type="Control" parent="VideoGameUI/UI"]
 visible = false
@@ -1562,6 +1562,20 @@ texture_pressed = ExtResource( 33 )
 texture_hover = ExtResource( 33 )
 texture_disabled = ExtResource( 33 )
 texture_focused = ExtResource( 35 )
+
+[node name="TextureRect" type="TextureRect" parent="VideoGameUI/UI/CharacterSelect/VBoxContainer/Select/Selections/Row2/CharSelect2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.5
+margin_top = -18.0
+margin_right = 16.5
+margin_bottom = 18.0
+texture = ExtResource( 56 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CharSelect3" type="TextureButton" parent="VideoGameUI/UI/CharacterSelect/VBoxContainer/Select/Selections/Row2"]
 margin_left = 94.0

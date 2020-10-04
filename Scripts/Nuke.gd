@@ -2,7 +2,7 @@ extends Area
 
 export(PackedScene) var explosion
 
-var speed = 15.0
+var speed = 20.0
 var dir
 
 func _process(delta):

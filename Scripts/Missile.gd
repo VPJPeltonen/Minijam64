@@ -1,7 +1,7 @@
 extends Area
 
 
-var speed = 15.0
+var speed = 20.0
 var dir = Vector3(0,0,0)
 var target_racer
 
