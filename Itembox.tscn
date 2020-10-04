@@ -5,12 +5,12 @@
 [node name="Itembox" instance=ExtResource( 1 )]
 
 [node name="Cube021" parent="." index="0"]
-transform = Transform( -0.303093, -0.154148, 0.274491, -0.309008, 0.218502, -0.218502, -0.0601715, -0.345641, -0.260545, 0, 0.165321, 0 )
+transform = Transform( -0.27091, -0.0429218, 0.340202, -0.309008, 0.218502, -0.218502, -0.14864, -0.376014, -0.165805, 0, 0.155536, 0 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Cube021Action"
 
 [node name="OmniLight" type="OmniLight" parent="." index="2"]
-light_color = Color( 1, 0.666454, 0, 1 )
-light_energy = 1.33368
+light_color = Color( 1, 0.614357, 0, 1 )
+light_energy = 1.26269
 omni_range = 5.48203
