@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -51,7 +51,7 @@
 [ext_resource path="res://Animations/bone_spriteframes.tres" type="SpriteFrames" id=49]
 [ext_resource path="res://Map64/Map.tscn" type="PackedScene" id=50]
 [ext_resource path="res://Scripts/Checkpoint.gd" type="Script" id=51]
-[ext_resource path="res://Scenes/Flame.tscn" type="PackedScene" id=52]
+[ext_resource path="res://Particles/Fireparticles.tres" type="ArrayMesh" id=52]
 [ext_resource path="res://Scenes/Missile.tscn" type="PackedScene" id=53]
 [ext_resource path="res://Scenes/Nuke.tscn" type="PackedScene" id=54]
 
@@ -105,6 +105,150 @@ height = 0.05
 
 [sub_resource type="ConvexPolygonShape" id=33]
 points = PoolVector3Array( 0, 1, 1, 0, 1, -1, 0, 1, 1, 0, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 0, 1, 1, 0, 1, -1, 0, 1, -1, 0, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1 )
+
+[sub_resource type="PrismMesh" id=34]
+
+[sub_resource type="SpatialMaterial" id=35]
+albedo_color = Color( 1, 0.494118, 0, 1 )
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="Curve" id=36]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, -360 ), 0.0, 0.0, 0, 0, Vector2( 0.528796, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -4.90909 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=37]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.890052, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -10.6972, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=38]
+resource_name = "FireOFF"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CPUParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CPUParticles2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CPUParticles3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("OmniLight:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.796078, 0, 1 ), Color( 1, 0, 0, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("OmniLight:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "FireON"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CPUParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CPUParticles2:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CPUParticles3:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("OmniLight:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0.796078, 0, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("OmniLight:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2.0 ]
+}
 
 [sub_resource type="DynamicFont" id=22]
 size = 18
@@ -564,7 +708,64 @@ shape = SubResource( 33 )
 wait_time = 2.0
 one_shot = true
 
-[node name="Flame" parent="Player/Cart/Visual/Flame" instance=ExtResource( 52 )]
+[node name="Flame" type="Spatial" parent="Player/Cart/Visual/Flame"]
+visible = false
+
+[node name="MeshInstance" type="MeshInstance" parent="Player/Cart/Visual/Flame/Flame"]
+transform = Transform( 0.0267642, -2.59934, -4.23486e-07, 0, -9.63021e-08, 0.591099, -1.72163, 0.0267648, 4.36055e-09, 3.20449, -4.76837e-07, -0.0976257 )
+mesh = SubResource( 34 )
+material/0 = SubResource( 35 )
+
+[node name="CPUParticles" type="CPUParticles" parent="Player/Cart/Visual/Flame/Flame"]
+transform = Transform( 0.614643, -0.788805, 0, 0.788805, 0.614643, 0, 0, 0, 1, 0, 0, 0 )
+emitting = false
+mesh = ExtResource( 52 )
+spread = 0.0
+initial_velocity = 2.0
+angular_velocity = 142.57
+linear_accel = 5.94
+angle = 360.0
+angle_random = 1.0
+angle_curve = SubResource( 36 )
+scale_amount = 100.0
+scale_amount_curve = SubResource( 37 )
+
+[node name="CPUParticles2" type="CPUParticles" parent="Player/Cart/Visual/Flame/Flame"]
+transform = Transform( 0.603025, -0.773895, 0.193515, 0.788805, 0.614643, 0, -0.118943, 0.152646, 0.981097, 0, 0, 0 )
+emitting = false
+mesh = ExtResource( 52 )
+spread = 0.0
+initial_velocity = 2.0
+angular_velocity = 142.57
+linear_accel = 5.94
+angle = 360.0
+angle_random = 1.0
+angle_curve = SubResource( 36 )
+scale_amount = 100.0
+scale_amount_curve = SubResource( 37 )
+
+[node name="CPUParticles3" type="CPUParticles" parent="Player/Cart/Visual/Flame/Flame"]
+transform = Transform( 0.611281, -0.78449, -0.104459, 0.788805, 0.614643, 0, 0.064205, -0.0823978, 0.994529, 0, 0, 0 )
+emitting = false
+mesh = ExtResource( 52 )
+spread = 0.0
+initial_velocity = 2.0
+angular_velocity = 142.57
+linear_accel = 5.94
+angle = 360.0
+angle_random = 1.0
+angle_curve = SubResource( 36 )
+scale_amount = 100.0
+scale_amount_curve = SubResource( 37 )
+
+[node name="OmniLight" type="OmniLight" parent="Player/Cart/Visual/Flame/Flame"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.433023, 0.473167, 0 )
+light_color = Color( 1, 0, 0, 1 )
+light_energy = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Cart/Visual/Flame/Flame"]
+anims/FireOFF = SubResource( 38 )
+anims/FireON = SubResource( 39 )
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.62497, 5.25321 )

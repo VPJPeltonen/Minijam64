@@ -1,7 +1,7 @@
 extends Area
 
 
-var speed = 40.0
+var speed = 15.0
 var dir = Vector3(0,0,0)
 
 func _process(delta):
@@ -13,4 +13,4 @@ func _on_Missile_body_entered(body):
 		return
 	if body.is_in_group("Cart"):
 		body.disable()
-	queue_free()
+	#queue_free()

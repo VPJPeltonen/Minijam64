@@ -2,7 +2,7 @@ extends Area
 
 export(PackedScene) var explosion
 
-var speed = 400.0
+var speed = 15.0
 var dir
 
 func _process(delta):
@@ -15,4 +15,4 @@ func _on_Nuke_body_entered(body):
 	var blast_area = explosion.instance()
 	get_parent().add_child(blast_area)
 	blast_area.global_transform = global_transform
-	queue_free()
+	#queue_free()

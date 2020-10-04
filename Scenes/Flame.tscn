@@ -2,9 +2,9 @@
 
 [ext_resource path="res://Particles/Fireparticles.tres" type="ArrayMesh" id=1]
 
-[sub_resource type="PrismMesh" id=1]
+[sub_resource type="PrismMesh" id=34]
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=35]
 albedo_color = Color( 1, 0.494118, 0, 1 )
 emission_enabled = true
 emission = Color( 1, 0, 0, 1 )
@@ -12,15 +12,15 @@ emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=36]
 min_value = -360.0
 max_value = 360.0
 _data = [ Vector2( 0, -360 ), 0.0, 0.0, 0, 0, Vector2( 0.528796, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -4.90909 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=37]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.890052, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -10.6972, 0.0, 0, 0 ]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=38]
 resource_name = "FireOFF"
 tracks/0/type = "value"
 tracks/0/path = NodePath("CPUParticles:emitting")
@@ -83,7 +83,7 @@ tracks/4/keys = {
 "values": [ 2.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=39]
 resource_name = "FireON"
 tracks/0/type = "value"
 tracks/0/path = NodePath("CPUParticles:emitting")
@@ -150,13 +150,11 @@ tracks/4/keys = {
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.0267642, -2.59934, -4.23486e-07, 0, -9.63021e-08, 0.591099, -1.72163, 0.0267648, 4.36055e-09, 3.20449, -4.76837e-07, -0.0976257 )
-visible = false
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+mesh = SubResource( 34 )
+material/0 = SubResource( 35 )
 
 [node name="CPUParticles" type="CPUParticles" parent="."]
 transform = Transform( 0.614643, -0.788805, 0, 0.788805, 0.614643, 0, 0, 0, 1, 0, 0, 0 )
-emitting = false
 mesh = ExtResource( 1 )
 spread = 0.0
 initial_velocity = 2.0
@@ -164,13 +162,12 @@ angular_velocity = 142.57
 linear_accel = 5.94
 angle = 360.0
 angle_random = 1.0
-angle_curve = SubResource( 3 )
+angle_curve = SubResource( 36 )
 scale_amount = 100.0
-scale_amount_curve = SubResource( 4 )
+scale_amount_curve = SubResource( 37 )
 
 [node name="CPUParticles2" type="CPUParticles" parent="."]
 transform = Transform( 0.603025, -0.773895, 0.193515, 0.788805, 0.614643, 0, -0.118943, 0.152646, 0.981097, 0, 0, 0 )
-emitting = false
 mesh = ExtResource( 1 )
 spread = 0.0
 initial_velocity = 2.0
@@ -178,13 +175,12 @@ angular_velocity = 142.57
 linear_accel = 5.94
 angle = 360.0
 angle_random = 1.0
-angle_curve = SubResource( 3 )
+angle_curve = SubResource( 36 )
 scale_amount = 100.0
-scale_amount_curve = SubResource( 4 )
+scale_amount_curve = SubResource( 37 )
 
 [node name="CPUParticles3" type="CPUParticles" parent="."]
 transform = Transform( 0.611281, -0.78449, -0.104459, 0.788805, 0.614643, 0, 0.064205, -0.0823978, 0.994529, 0, 0, 0 )
-emitting = false
 mesh = ExtResource( 1 )
 spread = 0.0
 initial_velocity = 2.0
@@ -192,15 +188,15 @@ angular_velocity = 142.57
 linear_accel = 5.94
 angle = 360.0
 angle_random = 1.0
-angle_curve = SubResource( 3 )
+angle_curve = SubResource( 36 )
 scale_amount = 100.0
-scale_amount_curve = SubResource( 4 )
+scale_amount_curve = SubResource( 37 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.433023, 0.473167, 0 )
 light_color = Color( 1, 0, 0, 1 )
-light_energy = 0.0
+light_energy = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/FireOFF = SubResource( 6 )
-anims/FireON = SubResource( 5 )
+anims/FireOFF = SubResource( 38 )
+anims/FireON = SubResource( 39 )
