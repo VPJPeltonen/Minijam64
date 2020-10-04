@@ -9,6 +9,11 @@ export var break_speed = 1.0
 export var racer_name = "Racer"
 export var kart_type = "basic"
 
+export(Resource) var coblin
+export(Resource) var cucaracha
+export(Resource) var silber
+export(Resource) var bone
+
 var current_checkpoint = 0
 var current_lap = 1
 
@@ -57,3 +62,14 @@ func finish_race():
 
 func _on_StartButton_pressed():
 	pass # Replace with function body.
+
+func _on_UI_car_select(car):
+	match car:
+		"coblin":
+			$Cart/Visual/AnimatedSprite3D.frames = coblin
+		"cucaracha":
+			$Cart/Visual/AnimatedSprite3D.frames = cucaracha
+		"silber":
+			$Cart/Visual/AnimatedSprite3D.frames = silber
+		"bone":
+			$Cart/Visual/AnimatedSprite3D.frames = bone

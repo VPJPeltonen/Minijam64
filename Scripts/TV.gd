@@ -19,3 +19,4 @@ func _ready():
 	#texture.convert(Image.FORMAT_RGBA8)
 	
 	$Screen.material_override.albedo_texture = texture
+	$Screen.material_override.emission_texture = texture
