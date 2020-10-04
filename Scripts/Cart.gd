@@ -3,6 +3,9 @@ extends RigidBody
 signal powerup_gained(power_up)
 signal powerup_used
 
+export(PackedScene) var nuke
+export(PackedScene) var missile
+
 var move_speed = 80.0
 var break_speed = 1.0
 var forward_vector
@@ -44,14 +47,21 @@ func _process(delta):
 		drift_effect2.emitting = false
 
 func use_power_up():
+	var source = get_parent().get_node("Visual/Target")
 	match power_up:
 		"boost":
 			boosting = true
 			$BoostTimer.start()
 		"nuke":
-			pass
+			var new_nuke = nuke.instance()
+			get_parent().add_child(new_nuke)
+			new_nuke.dir = forward_vector
+			new_nuke.global_transform = source.global_transform
 		"missile":
-			pass
+			var new_missile = missile.instance()
+			get_parent().add_child(new_missile)
+			new_missile.dir = forward_vector
+			new_missile.global_transform = source.global_transform
 		"flame":
 			get_parent().get_node("Visual/Flame").activate_flame()
 	emit_signal("powerup_used")

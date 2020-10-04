@@ -4,11 +4,11 @@ var burning = false
 
 func activate_flame():
 	burning = true
-	$MeshInstance.show()
+	$Flame.show()
 	$FlameTimer.start()
 
 func _on_FlameTimer_timeout():
-	$MeshInstance.hide()
+	$Flame.hide()
 	burning = true
 
 func _on_Flame_body_entered(body):

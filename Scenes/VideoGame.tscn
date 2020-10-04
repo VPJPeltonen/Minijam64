@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -52,6 +52,8 @@
 [ext_resource path="res://Map64/Map.tscn" type="PackedScene" id=50]
 [ext_resource path="res://Scripts/Checkpoint.gd" type="Script" id=51]
 [ext_resource path="res://Scenes/Flame.tscn" type="PackedScene" id=52]
+[ext_resource path="res://Scenes/Missile.tscn" type="PackedScene" id=53]
+[ext_resource path="res://Scenes/Nuke.tscn" type="PackedScene" id=54]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.2735, 21.6738, 1 )
@@ -487,10 +489,13 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.137276, -1.63345, -7.57265 )
 
 [node name="Cart" type="RigidBody" parent="Player/Cart" groups=[
 "Cart",
+"Player",
 ]]
 linear_damp = 2.0
 angular_damp = 1.0
 script = ExtResource( 1 )
+nuke = ExtResource( 54 )
+missile = ExtResource( 53 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Player/Cart/Cart"]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
@@ -509,7 +514,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="Target" type="Position3D" parent="Player/Cart/Visual"]
-transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18284, 0, 0 )
 
 [node name="CameraTarget" type="Position3D" parent="Player/Cart/Visual"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17864, 1.95246, -0.0171661 )
@@ -1418,7 +1423,7 @@ margin_left = -80.0
 margin_top = -80.0
 margin_right = 80.0
 margin_bottom = 80.0
-texture = ExtResource( 44 )
+texture = ExtResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
