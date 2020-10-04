@@ -143,6 +143,8 @@ func format_time(elapsed):
 	return str_elapsed
 
 func start_game():
+	# Start countdown; stop music for now
+	music_player.stop()
 	$GameView/Countdown.start_countdown()
 	$GameView.show()
 	$CharacterSelect.hide()
@@ -173,6 +175,7 @@ func _on_StartButton_pressed():
 	$CharacterSelect.show()
 	$FinishScreen.hide()
 	$Start.hide()
+	music_player.play("Title")
 
 func _on_Cart_powerup_gained(power_up):
 	$GameView/PowerUP.show()
