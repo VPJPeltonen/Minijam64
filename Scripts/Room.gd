@@ -63,9 +63,6 @@ func _on_Timer_timeout():
 	camera_animator.play("Camera Intro")
 	controller.play("ControlerUP")
 	GAME.game_on = true
-<<<<<<< HEAD
-=======
-
+	
 func _on_TransitionTimer_timeout():
 	transitioning = false
->>>>>>> 962f385b18d4d91b15d816f69b0a3adb64849533
