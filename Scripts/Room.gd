@@ -22,15 +22,15 @@ func _input(ev):
 		$Control/Label.hide()
 		start_played = true
 	if ev is InputEventKey and showing == "controls":
-		showing = "none"
+		showing = "normal"
 		$Control/Back.hide()
 		camera_animator.play_backwards("IdleToCONTROLS")
 	if ev is InputEventKey and showing == "exit":
-		showing = "none"
+		showing = "normal"
 		$Control/Back.hide()
 		camera_animator.play_backwards("IdleToEXIT")
 	if ev is InputEventKey and showing == "credits":
-		showing = "none"
+		showing = "normal"
 		$Control/Back.hide()
 		camera_animator.play_backwards("IdleToCREDITS")			
 		
