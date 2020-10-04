@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -57,7 +57,10 @@
 [ext_resource path="res://Scenes/AI_v4.tscn" type="PackedScene" id=55]
 [ext_resource path="res://Textures/chingo avatar.png" type="Texture" id=56]
 [ext_resource path="res://Animations/Chingo_view.tres" type="Texture" id=57]
+[ext_resource path="res://Audio/Music/peach.ogg" type="AudioStream" id=58]
 [ext_resource path="res://Animations/chino_spriteframes.tres" type="SpriteFrames" id=59]
+[ext_resource path="res://Audio/Music/peachtitle.ogg" type="AudioStream" id=60]
+[ext_resource path="res://Scenes/MusicPlayer.tscn" type="PackedScene" id=61]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.2735, 21.6738, 1 )
@@ -1410,8 +1413,12 @@ __meta__ = {
 }
 
 [node name="CharacterSelect" type="Control" parent="VideoGameUI/UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VideoGameUI/UI/CharacterSelect"]
 anchor_left = 0.5
@@ -1645,7 +1652,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MusicPlayer" parent="VideoGameUI/UI" instance=ExtResource( 61 )]
+
+[node name="Title" type="AudioStreamPlayer" parent="VideoGameUI/UI/MusicPlayer"]
+stream = ExtResource( 60 )
+bus = "Music"
+
+[node name="InGame" type="AudioStreamPlayer" parent="VideoGameUI/UI/MusicPlayer"]
+stream = ExtResource( 58 )
+bus = "Music"
+
 [node name="Shader" type="TextureRect" parent="VideoGameUI"]
+visible = false
 material = SubResource( 26 )
 anchor_right = 1.0
 anchor_bottom = 1.0
