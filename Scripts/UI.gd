@@ -18,7 +18,7 @@ var race_time = 0.0
 var game_UI_mode = "start"
 onready var racers = get_tree().get_nodes_in_group("Cart")
 
-onready var start_menu_buttons = [$Start/BoxContainer/StartButton,$Start/BoxContainer/ControlsButton,$Start/BoxContainer/ExitButton]
+onready var start_menu_buttons = [$Start/BoxContainer/StartButton,$Start/BoxContainer/ControlsButton,$Start/BoxContainer/CreditsButton,$Start/BoxContainer/ExitButton]
 var start_menu_focus = 0
 
 onready var char_menu_row1 = [$CharacterSelect/VBoxContainer/Select/Selections/Row1/CharSelect,$CharacterSelect/VBoxContainer/Select/Selections/Row1/CharSelect2,$CharacterSelect/VBoxContainer/Select/Selections/Row1/CharSelect3]
