@@ -21,3 +21,5 @@ func play(song : String):
 func pause(): if currentSong != null: currentSong.pause()
 
 func unpause(): if currentSong != null: currentSong.play()
+
+func stop(): if currentSong != null: currentSong.stop()
