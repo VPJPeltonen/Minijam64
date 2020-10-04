@@ -836,8 +836,6 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-<<<<<<< HEAD
-
 [node name="Back" type="Label" parent="Control"]
 visible = false
 anchor_top = 0.5
@@ -855,6 +853,3 @@ __meta__ = {
 [node name="TransitionTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-=======
->>>>>>> 40abc72d878351e06bccb38e4461d518fa1e576b
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
