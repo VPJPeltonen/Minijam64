@@ -34,10 +34,7 @@ func _process(delta):
 	if Input.is_action_pressed("break") and on_road:
 		add_central_force(forward_vector * (delta*move_speed*0.25))
 	if Input.is_action_just_pressed("use_power_up") and power_up != null:
-		power_up = null
-		boosting = true
-		$BoostTimer.start()
-		emit_signal("powerup_used")
+		use_power_up()
 	if boosting:
 		drift_effect1.emitting = true
 		drift_effect2.emitting = true
@@ -45,6 +42,20 @@ func _process(delta):
 	else:
 		drift_effect1.emitting = false
 		drift_effect2.emitting = false
+
+func use_power_up():
+	match power_up:
+		"boost":
+			boosting = true
+			$BoostTimer.start()
+		"nuke":
+			pass
+		"missile":
+			pass
+		"flame":
+			get_parent().get_node("Visual/Flame").activate_flame()
+	emit_signal("powerup_used")
+	power_up = null
 
 func GainPowerUp(powerup):
 	power_up = powerup
@@ -92,7 +103,8 @@ func _on_Wheels_body_exited(body):
 		on_road = false
 
 func _on_SpawnTimer_timeout():
-	global_transform.origin = last_checkpoint.get_node("SpawnPoint").global_transform.origin
+	if last_checkpoint != null:
+		global_transform.origin = last_checkpoint.get_node("SpawnPoint").global_transform.origin
 	disabled = false
 
 func _on_BoostTimer_timeout():
