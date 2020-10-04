@@ -879,12 +879,12 @@ anims/ControlerUP = SubResource( 29 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191111, -0.286411, 0.244074 )
 
 [node name="keyboardPOSTER" type="MeshInstance" parent="TheRoom64/posters"]
-transform = Transform( 1.14775e-07, -5.73875e-08, -2.45874, -1.92561, 1.14775e-07, -7.32762e-08, 5.73875e-08, 1.92561, 0, 22.1751, 8.06297, -8.93742 )
+transform = Transform( 5.73993e-08, -4.20941e-08, -1.229, -0.963, 7.27045e-08, -7.32541e-08, 7.27045e-08, 0.963, -5.37213e-08, 22.8206, 7.50555, -8.77193 )
 mesh = SubResource( 31 )
 material/0 = SubResource( 33 )
 
 [node name="gampaddPOSTER" type="MeshInstance" parent="TheRoom64/posters"]
-transform = Transform( 1.14775e-07, -5.73875e-08, -2.45874, -1.92561, 1.14775e-07, -7.32762e-08, 5.73875e-08, 1.92561, 0, 17.3097, 8.06297, -8.93742 )
+transform = Transform( 5.73993e-08, -4.20941e-08, -1.229, -0.963, 7.27045e-08, -7.32541e-08, 7.27045e-08, 0.963, -5.37213e-08, 18.9087, 9.26532, -8.93742 )
 mesh = SubResource( 32 )
 material/0 = SubResource( 33 )
 
