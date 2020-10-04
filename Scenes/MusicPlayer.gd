@@ -1,3 +1,4 @@
+class_name MusicPlayer
 extends Node
 
 var song_map : Dictionary = {}

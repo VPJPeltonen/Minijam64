@@ -29,6 +29,8 @@ var char_menu_focus_row = 0
 var char_menu_focus_line = 0
 var stored_racers = ["coblin","cucaracha","silber","bone","chingo","none","none","none","none"]
 
+onready var music_player: MusicPlayer = $MusicPlayer
+
 func _ready():
 	$GameView.hide()
 	$FinishScreen.hide()

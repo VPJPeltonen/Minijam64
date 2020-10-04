@@ -1,3 +1,4 @@
+class_name SoundPlayer
 extends Node
 
 var sound_map : Dictionary = {}
