@@ -3,9 +3,12 @@ extends Area
 
 var speed = 15.0
 var dir = Vector3(0,0,0)
+var target_racer
 
 func _process(delta):
-	look_at(global_transform.origin-dir,Vector3.UP)
+	look_at(target_racer.global_transform.origin,Vector3.UP)
+	dir = global_transform.origin-target_racer.global_transform.origin
+	dir = dir.normalized()
 	global_transform.origin -= dir*delta*speed
 
 func _on_Missile_body_entered(body):
@@ -13,4 +16,4 @@ func _on_Missile_body_entered(body):
 		return
 	if body.is_in_group("Cart"):
 		body.disable()
-	#queue_free()
+	queue_free()

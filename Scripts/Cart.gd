@@ -47,7 +47,7 @@ func _process(delta):
 		drift_effect2.emitting = false
 
 func use_power_up():
-	var source = get_parent().get_node("Visual/Target")
+	var source = get_parent().get_node("Visual/ShotSource")
 	match power_up:
 		"boost":
 			boosting = true
@@ -58,9 +58,17 @@ func use_power_up():
 			new_nuke.dir = forward_vector
 			new_nuke.global_transform = source.global_transform
 		"missile":
+			var racers = get_tree().get_nodes_in_group("Cart")
+			var closest = racers[0]
+			if closest == self:
+				closest = racers[1]
+			for racer in racers:
+				if racer != self and global_transform.origin.distance_to(racer.global_transform.origin) < global_transform.origin.distance_to(closest.global_transform.origin):
+					closest = racer
 			var new_missile = missile.instance()
 			get_parent().add_child(new_missile)
 			new_missile.dir = forward_vector
+			new_missile.target_racer = closest
 			new_missile.global_transform = source.global_transform
 		"flame":
 			get_parent().get_node("Visual/Flame").activate_flame()

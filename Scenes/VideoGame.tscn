@@ -660,6 +660,9 @@ script = ExtResource( 2 )
 [node name="Target" type="Position3D" parent="Player/Cart/Visual"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18284, 0, 0 )
 
+[node name="ShotSource" type="Position3D" parent="Player/Cart/Visual"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18284, 0.63733, -7.62939e-06 )
+
 [node name="CameraTarget" type="Position3D" parent="Player/Cart/Visual"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17864, 1.95246, -0.0171661 )
 
