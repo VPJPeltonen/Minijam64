@@ -67,9 +67,9 @@ extents = Vector3( 29.2735, 21.6738, 1 )
 [sub_resource type="BoxShape" id=29]
 extents = Vector3( 87.6864, 33.0655, 1 )
 
-[sub_resource type="CylinderMesh" id=8]
+[sub_resource type="CylinderMesh" id=40]
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=41]
 flags_transparent = true
 albedo_color = Color( 0.160784, 0.34902, 0.670588, 0.654902 )
 
@@ -83,7 +83,7 @@ extents = Vector3( 20.3198, 1, 15.5919 )
 [sub_resource type="SphereShape" id=16]
 radius = 2.54887
 
-[sub_resource type="CylinderShape" id=17]
+[sub_resource type="CylinderShape" id=42]
 height = 0.632367
 
 [sub_resource type="SpatialMaterial" id=18]
@@ -260,7 +260,7 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 24 )
 
-[sub_resource type="StyleBoxTexture" id=25]
+[sub_resource type="StyleBoxTexture" id=43]
 texture = ExtResource( 37 )
 region_rect = Rect2( 0, 0, 104, 33 )
 
@@ -537,8 +537,8 @@ script = ExtResource( 26 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Enviroment/Sea"]
 visible = false
-mesh = SubResource( 8 )
-material/0 = SubResource( 9 )
+mesh = SubResource( 40 )
+material/0 = SubResource( 41 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Sea"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45874, 0, 0 )
@@ -656,7 +656,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Visual" type="Spatial" parent="Player/Cart"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="Target" type="Position3D" parent="Player/Cart/Visual"]
@@ -672,7 +671,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17864, 1.95246, -0.0171661 
 
 [node name="CollisionShape" type="CollisionShape" parent="Player/Cart/Visual/Wheels"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25106, 0 )
-shape = SubResource( 17 )
+shape = SubResource( 42 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Player/Cart/Visual"]
 transform = Transform( 1.5, 0, 1.49012e-08, 0, 1.5, 0, 1.86265e-08, 0, 1.55, 0, 0.401051, 0 )
@@ -1343,7 +1342,7 @@ margin_right = 269.0
 margin_bottom = 114.0
 rect_min_size = Vector2( 120, 30 )
 focus_neighbour_top = NodePath("../ExitButton")
-custom_styles/focus = SubResource( 25 )
+custom_styles/focus = SubResource( 43 )
 custom_styles/normal = SubResource( 26 )
 
 [node name="Label" type="Label" parent="VideoGameUI/UI/Start/BoxContainer/StartButton"]
@@ -1365,7 +1364,7 @@ margin_top = 118.0
 margin_right = 269.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 120, 30 )
-custom_styles/focus = SubResource( 25 )
+custom_styles/focus = SubResource( 43 )
 custom_styles/normal = SubResource( 26 )
 
 [node name="Label" type="Label" parent="VideoGameUI/UI/Start/BoxContainer/ControlsButton"]
@@ -1390,7 +1389,7 @@ margin_top = 152.0
 margin_right = 269.0
 margin_bottom = 182.0
 rect_min_size = Vector2( 120, 30 )
-custom_styles/focus = SubResource( 25 )
+custom_styles/focus = SubResource( 43 )
 custom_styles/normal = SubResource( 26 )
 
 [node name="Label" type="Label" parent="VideoGameUI/UI/Start/BoxContainer/ExitButton"]

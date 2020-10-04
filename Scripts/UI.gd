@@ -37,6 +37,8 @@ func _ready():
 	$Start/BoxContainer/StartButton.grab_focus()
 
 func _process(delta):
+	if !GAME.game_on:
+		return
 	if GAME.race_on:
 		race_time += delta
 		$GameView/Time/Amount.text = format_time(race_time)
