@@ -1,6 +1,6 @@
 extends Node
 
-var last_checkpoint = 8
+var last_checkpoint = 4
 var Laps = 1
 var race_on = false
 

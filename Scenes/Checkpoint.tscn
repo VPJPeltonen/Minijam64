@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Checkpoint.gd" type="Script" id=1]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 6.0151, 7.41308, 1 )
+extents = Vector3( 29.2735, 21.6738, 1 )
 
 [sub_resource type="CubeMesh" id=2]
 
