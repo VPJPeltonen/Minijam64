@@ -35,3 +35,4 @@ func _on_Timer_timeout():
 	camera_animator.play("Camera Intro")
 	controller.play("ControlerUP")
 	GAME.game_on = true
+	print("gaming")
