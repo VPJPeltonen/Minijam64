@@ -316,6 +316,7 @@ move_speed = 2400.0
 racer_name = "Silber 1"
 
 [node name="AI_v4" parent="AIKarts" instance=ExtResource( 55 )]
+kart_type = "Shingo"
 
 [node name="AI3" parent="AIKarts" instance=ExtResource( 11 )]
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -71.2752, -2.47835, 13.1507 )
@@ -1538,9 +1539,11 @@ script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-bone_pic = ExtResource( 18 )
-silber_pic = ExtResource( 17 )
-cucaracha_pic = ExtResource( 16 )
+bone_pic = ExtResource( 41 )
+silber_pic = ExtResource( 42 )
+cucaracha_pic = ExtResource( 40 )
+coblin_pic = ExtResource( 39 )
+chin_pic = ExtResource( 56 )
 
 [node name="Racer" type="HBoxContainer" parent="VideoGameUI/UI/GameView/RaceOrder"]
 margin_right = 79.0

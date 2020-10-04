@@ -3,6 +3,8 @@ extends VBoxContainer
 export(Texture) var bone_pic
 export(Texture) var silber_pic
 export(Texture) var cucaracha_pic
+export(Texture) var coblin_pic
+export(Texture) var chin_pic
 
 onready var names = [$Racer/Label,$Racer2/Label,$Racer3/Label,$Racer4/Label]
 onready var pics = [$Racer/TextureRect,$Racer2/TextureRect,$Racer3/TextureRect,$Racer4/TextureRect]
@@ -24,6 +26,10 @@ func update_order(racers):
 				pics[i].texture = silber_pic
 			"Cucaracha":
 				pics[i].texture = cucaracha_pic
+			"Shingo":
+				pics[i].texture = chin_pic
+			"Coblin":
+				pics[i].texture = coblin_pic
 
 func get_final_order(racers):
 	racers.sort_custom(DistanceSorter, "sort_ascending")
