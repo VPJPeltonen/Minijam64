@@ -13,6 +13,9 @@ onready var controller = $TheRoom64/controler/AnimationPlayer
 func _input(ev):
 	if transitioning:
 		return
+	if ev is InputEventKey:
+		if ev.scancode == KEY_ENTER:
+			return
 	if ev is InputEventKey and !start_played:
 		n64_animator.play("CartridgeENTER")
 		$Timer.start(2)
@@ -32,6 +35,8 @@ func _input(ev):
 		camera_animator.play_backwards("IdleToCREDITS")			
 		
 func restart_game():
+	if showing != "normal":
+		return
 	print("room restart")
 	$Viewport/VideoGame.queue_free()
 	var new_game = video_game.instance()
@@ -39,6 +44,8 @@ func restart_game():
 	new_game.global_transform.origin = $Viewport/Position3D.global_transform.origin
 
 func show_controls():
+	if showing != "normal":
+		return
 	transitioning = true
 	$TransitionTimer.start()
 	camera_animator.play("IdleToCONTROLS")
@@ -46,6 +53,8 @@ func show_controls():
 	$Control/Back.show()
 
 func show_exit():
+	if showing != "normal":
+		return
 	transitioning = true
 	$TransitionTimer.start()
 	camera_animator.play("IdleToEXIT")
@@ -53,6 +62,8 @@ func show_exit():
 	$Control/Back.show()
 	
 func show_credits():
+	if showing != "normal":
+		return
 	transitioning = true
 	$TransitionTimer.start()
 	camera_animator.play("IdleToCREDITS")
