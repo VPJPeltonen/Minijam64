@@ -14,6 +14,7 @@ export(Resource) var cucaracha
 export(Resource) var silber
 export(Resource) var bone
 export(Resource) var chingo
+export(Resource) var gek
 
 var current_checkpoint = 0
 var current_lap = 1
@@ -76,3 +77,5 @@ func _on_UI_car_select(car):
 			$Cart/Visual/AnimatedSprite3D.frames = bone
 		"chingo":
 			$Cart/Visual/AnimatedSprite3D.frames = chingo
+		"gek":
+			$Cart/Visual/AnimatedSprite3D.frames = gek

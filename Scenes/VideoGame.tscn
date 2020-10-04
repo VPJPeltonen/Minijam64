@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://Fonts/temp_dynamicfont.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scenes/PowerUp.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Materials/Shaders/crt.shader" type="Shader" id=10]
-[ext_resource path="res://Scenes/AIKart.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Models/kartScale.glb" type="PackedScene" id=11]
 [ext_resource path="res://Textures/white.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/Boost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scripts/AIPath.gd" type="Script" id=14]
@@ -61,6 +61,27 @@
 [ext_resource path="res://Animations/chino_spriteframes.tres" type="SpriteFrames" id=59]
 [ext_resource path="res://Audio/Music/peachtitle.ogg" type="AudioStream" id=60]
 [ext_resource path="res://Scenes/MusicPlayer.tscn" type="PackedScene" id=61]
+[ext_resource path="res://Scripts/AI.gd" type="Script" id=62]
+[ext_resource path="res://Scripts/AICart.gd" type="Script" id=63]
+[ext_resource path="res://Scripts/AICartVisual.gd" type="Script" id=64]
+[ext_resource path="res://Animations/gek_spriteframes.tres" type="SpriteFrames" id=65]
+[ext_resource path="res://Textures/SelectionSprites/gek6.png" type="Texture" id=66]
+[ext_resource path="res://Textures/SelectionSprites/gek3.png" type="Texture" id=67]
+[ext_resource path="res://Textures/SelectionSprites/gek4.png" type="Texture" id=68]
+[ext_resource path="res://Textures/SelectionSprites/gek7.png" type="Texture" id=69]
+[ext_resource path="res://Textures/SelectionSprites/gek8.png" type="Texture" id=70]
+[ext_resource path="res://Textures/SelectionSprites/gek2.png" type="Texture" id=71]
+[ext_resource path="res://Textures/SelectionSprites/gek5.png" type="Texture" id=72]
+[ext_resource path="res://Textures/SelectionSprites/gek1.png" type="Texture" id=73]
+[ext_resource path="res://Textures/gek_icon.png" type="Texture" id=74]
+
+[sub_resource type="SphereShape" id=27]
+radius = 3.06085
+
+[sub_resource type="CubeMesh" id=28]
+
+[sub_resource type="CylinderShape" id=29]
+height = 0.632367
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 29.2735, 21.6738, 1 )
@@ -257,6 +278,25 @@ tracks/4/keys = {
 "values": [ 0.0, 2.0 ]
 }
 
+[sub_resource type="AnimatedTexture" id=30]
+frames = 8
+fps = 8.0
+frame_0/texture = ExtResource( 73 )
+frame_1/texture = ExtResource( 71 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 67 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 68 )
+frame_3/delay_sec = 0.0
+frame_4/texture = ExtResource( 72 )
+frame_4/delay_sec = 0.0
+frame_5/texture = ExtResource( 66 )
+frame_5/delay_sec = 0.0
+frame_6/texture = ExtResource( 69 )
+frame_6/delay_sec = 0.0
+frame_7/texture = ExtResource( 70 )
+frame_7/delay_sec = 0.0
+
 [sub_resource type="StyleBoxTexture" id=23]
 texture = ExtResource( 37 )
 region_rect = Rect2( 0, 0, 104, 33 )
@@ -318,10 +358,58 @@ racer_name = "Silber 1"
 [node name="AI_v4" parent="AIKarts" instance=ExtResource( 55 )]
 kart_type = "Shingo"
 
-[node name="AI3" parent="AIKarts" instance=ExtResource( 11 )]
+[node name="AI3" type="Spatial" parent="AIKarts"]
 transform = Transform( 0.0304512, 0, 0.999536, 0, 1, 0, -0.999536, 0, 0.0304512, -71.2752, -2.47835, 13.1507 )
+script = ExtResource( 62 )
 move_speed = 2450.0
 racer_name = "Cucaracha"
+kart_type = "Cucaracha"
+
+[node name="Cart" type="Spatial" parent="AIKarts/AI3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
+
+[node name="Cart" type="RigidBody" parent="AIKarts/AI3/Cart" groups=[
+"Cart",
+]]
+linear_damp = 2.0
+angular_damp = 1.0
+script = ExtResource( 63 )
+
+[node name="CollisionShape" type="CollisionShape" parent="AIKarts/AI3/Cart/Cart"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+shape = SubResource( 27 )
+
+[node name="SpawnTimer" type="Timer" parent="AIKarts/AI3/Cart/Cart"]
+
+[node name="Visual" type="Spatial" parent="AIKarts/AI3/Cart"]
+script = ExtResource( 64 )
+
+[node name="MeshInstance" type="MeshInstance" parent="AIKarts/AI3/Cart/Visual"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+visible = false
+mesh = SubResource( 28 )
+material/0 = null
+
+[node name="Target" type="Position3D" parent="AIKarts/AI3/Cart/Visual"]
+transform = Transform( 0.99998, -0.00192426, -0.0059857, 0.00190658, 0.999994, -0.00295879, 0.00599136, 0.00294732, 0.999978, 2.18284, 0, 0 )
+
+[node name="kartScale" parent="AIKarts/AI3/Cart/Visual" instance=ExtResource( 11 )]
+visible = false
+
+[node name="CameraTarget" type="Position3D" parent="AIKarts/AI3/Cart/Visual"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7432, 1.49567, 0 )
+
+[node name="Wheels" type="Area" parent="AIKarts/AI3/Cart/Visual"]
+
+[node name="CollisionShape" type="CollisionShape" parent="AIKarts/AI3/Cart/Visual/Wheels"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25106, 0 )
+shape = SubResource( 29 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="AIKarts/AI3/Cart/Visual"]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.393182, 0 )
+billboard = 2
+frames = ExtResource( 65 )
+animation = "forward"
 
 [node name="Path" type="Spatial" parent="AIKarts"]
 script = ExtResource( 14 )
@@ -633,6 +721,7 @@ cucaracha = ExtResource( 3 )
 silber = ExtResource( 48 )
 bone = ExtResource( 49 )
 chingo = ExtResource( 59 )
+gek = ExtResource( 65 )
 
 [node name="Cart" type="Spatial" parent="Player"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.137276, -1.63345, -7.57265 )
@@ -801,6 +890,7 @@ cucaracha_view = ExtResource( 45 )
 silber_view = ExtResource( 46 )
 bone_view = ExtResource( 44 )
 chingo_view = ExtResource( 57 )
+gek_view = SubResource( 30 )
 
 [node name="FinishScreen" type="Control" parent="VideoGameUI/UI"]
 visible = false
@@ -1201,7 +1291,6 @@ __meta__ = {
 }
 
 [node name="CharacterSelect" type="Control" parent="VideoGameUI/UI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -1380,6 +1469,20 @@ texture_pressed = ExtResource( 33 )
 texture_hover = ExtResource( 33 )
 texture_disabled = ExtResource( 33 )
 texture_focused = ExtResource( 35 )
+
+[node name="TextureRect2" type="TextureRect" parent="VideoGameUI/UI/CharacterSelect/VBoxContainer/Select/Selections/Row2/CharSelect3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.3624
+margin_top = -17.5281
+margin_right = 17.6376
+margin_bottom = 18.4719
+texture = ExtResource( 74 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Row3" type="HBoxContainer" parent="VideoGameUI/UI/CharacterSelect/VBoxContainer/Select/Selections"]
 margin_top = 114.0
@@ -1724,6 +1827,9 @@ transform = Transform( 0.76019, 0, -0.6497, 0, 1, 0, 0.6497, 0, 0.76019, -17.660
 
 [node name="Boost8" parent="Boosts" instance=ExtResource( 13 )]
 transform = Transform( 0.952682, 0, 0.303966, 0, 1, 0, -0.303966, 0, 0.952682, -78.8477, -0.987096, 33.5194 )
+[connection signal="timeout" from="AIKarts/AI3/Cart/Cart/SpawnTimer" to="AIKarts/AI3/Cart/Cart" method="_on_SpawnTimer_timeout"]
+[connection signal="body_entered" from="AIKarts/AI3/Cart/Visual/Wheels" to="AIKarts/AI3/Cart/Cart" method="_on_Wheels_body_entered"]
+[connection signal="body_exited" from="AIKarts/AI3/Cart/Visual/Wheels" to="AIKarts/AI3/Cart/Cart" method="_on_Wheels_body_exited"]
 [connection signal="body_entered" from="TrackControls/Checkpoint/Area" to="TrackControls/Checkpoint" method="_on_Area_body_entered"]
 [connection signal="body_entered" from="TrackControls/Checkpoint2/Area" to="TrackControls/Checkpoint2" method="_on_Area_body_entered"]
 [connection signal="body_entered" from="TrackControls/Checkpoint3/Area" to="TrackControls/Checkpoint3" method="_on_Area_body_entered"]

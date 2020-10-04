@@ -13,6 +13,7 @@ export(Texture) var cucaracha_view
 export(Texture) var silber_view
 export(Texture) var bone_view
 export(Texture) var chingo_view
+export(Texture) var gek_view
 
 var race_time = 0.0
 var game_UI_mode = "start"
@@ -27,7 +28,7 @@ onready var char_menu_row3 = [$CharacterSelect/VBoxContainer/Select/Selections/R
 onready var char_menu = [char_menu_row1,char_menu_row2,char_menu_row3]
 var char_menu_focus_row = 0
 var char_menu_focus_line = 0
-var stored_racers = ["coblin","cucaracha","silber","bone","chingo","none","none","none","none"]
+var stored_racers = ["coblin","cucaracha","silber","bone","chingo","gek","none","none","none"]
 
 onready var music_player: MusicPlayer = $MusicPlayer
 
@@ -109,12 +110,14 @@ func update_char_window():
 			$CharacterSelect/VBoxContainer/Select/TextureRect/View.texture = bone_view
 		4:
 			$CharacterSelect/VBoxContainer/Select/TextureRect/View.texture = chingo_view			
+		5:
+			$CharacterSelect/VBoxContainer/Select/TextureRect/View.texture = gek_view
 		_:
 			$CharacterSelect/VBoxContainer/Select/TextureRect/View.texture = null
 
 func select_character():
 	var racer_num = char_menu_focus_row*3+char_menu_focus_line
-	if racer_num >= 5:
+	if racer_num >= 6:
 		return
 	match racer_num:
 		0:
@@ -127,6 +130,8 @@ func select_character():
 			emit_signal("car_select","bone")
 		4:
 			emit_signal("car_select","chingo")
+		5:
+			emit_signal("car_select","gek")
 	start_game()
 	
 func check_race_order():
