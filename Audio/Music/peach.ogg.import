@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/peach.ogg-ac08f9307959bcea8bf120962ace0f2f.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/peach.ogg"
+dest_files=[ "res://.import/peach.ogg-ac08f9307959bcea8bf120962ace0f2f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
