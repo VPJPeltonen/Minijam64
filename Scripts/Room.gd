@@ -11,7 +11,7 @@ onready var controller = $TheRoom64/controler/AnimationPlayer
 func _input(ev):
 	if ev is InputEventKey and !start_played:
 		n64_animator.play("CartridgeENTER")
-		$Timer.start(2)	
+		$Timer.start(2)
 		$Control/Label.hide()
 		start_played = true
 
@@ -21,6 +21,15 @@ func restart_game():
 	var new_game = video_game.instance()
 	$Viewport.add_child(new_game)
 	new_game.global_transform.origin = $Viewport/Position3D.global_transform.origin
+
+func show_controls():
+	camera_animator.play("IdleToCONTROLS")
+
+func show_exit():
+	camera_animator.play("IdleToEXIT")
+
+func show_credits():
+	camera_animator.play("IdleToCREDITS")
 
 func _on_Timer_timeout():
 	camera_animator.play("Camera Intro")
