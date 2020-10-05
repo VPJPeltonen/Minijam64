@@ -1,7 +1,7 @@
 extends Spatial
 
 var boostable = []
-var boost_amount = 12000
+var boost_amount = 4000
 
 func _process(delta):
 	for cart in boostable:
