@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=2]
+[gd_scene load_steps=113 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -80,6 +80,7 @@
 [ext_resource path="res://Audio/Sound/countdown_tick.ogg" type="AudioStream" id=78]
 [ext_resource path="res://Audio/Sound/intro.ogg" type="AudioStream" id=79]
 [ext_resource path="res://Audio/Sound/optionpick.ogg" type="AudioStream" id=80]
+[ext_resource path="res://balloon_pink.tscn" type="PackedScene" id=81]
 
 [sub_resource type="SphereShape" id=1]
 radius = 3.06085
@@ -758,6 +759,9 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 88.7449, 1.13282, 99.274
 
 [node name="Map64" parent="Enviroment" instance=ExtResource( 50 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.3306, 0 )
+
+[node name="balloon_pink" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.744, 4.07902, -75.4591 )
 
 [node name="Player" type="Spatial" parent="."]
 transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -40.308, 1.96115, 20.4547 )

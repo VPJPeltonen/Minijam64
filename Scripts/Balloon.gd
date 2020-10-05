@@ -1,4 +1,4 @@
-extends Area
+extends Spatial
 
 var boostable = []
 var boost_amount = 4000
