@@ -149,7 +149,6 @@ func format_time(elapsed):
 	return str_elapsed
 
 func start_game():
-	print("gaming")
 	# Start countdown; stop music for now
 	music_player.stop()
 	$GameView/Countdown.start_countdown()
