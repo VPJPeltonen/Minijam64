@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/AI.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/AICart.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/AICartVisual.gd" type="Script" id=3]
 [ext_resource path="res://Models/kartScale.glb" type="PackedScene" id=4]
 [ext_resource path="res://Animations/bone_spriteframes.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://Scenes/Engine.tscn" type="PackedScene" id=6]
 
 [sub_resource type="SphereShape" id=1]
 radius = 3.06085
@@ -66,6 +67,8 @@ transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.393182, 0 )
 billboard = 2
 frames = ExtResource( 5 )
 animation = "forward"
+
+[node name="Engine" parent="Cart" instance=ExtResource( 6 )]
 [connection signal="timeout" from="Cart/Cart/SpawnTimer" to="Cart/Cart" method="_on_SpawnTimer_timeout"]
 [connection signal="body_entered" from="Cart/Visual/Wheels" to="Cart/Cart" method="_on_Wheels_body_entered"]
 [connection signal="body_exited" from="Cart/Visual/Wheels" to="Cart/Cart" method="_on_Wheels_body_exited"]

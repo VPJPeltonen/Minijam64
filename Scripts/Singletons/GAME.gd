@@ -1,7 +1,7 @@
 extends Node
 
 var last_checkpoint = 4
-var Laps = 1
+var Laps = 3
 var race_on = false
 var game_on = false
 

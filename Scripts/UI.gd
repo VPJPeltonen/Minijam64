@@ -31,6 +31,7 @@ var char_menu_focus_line = 0
 var stored_racers = ["coblin","cucaracha","silber","bone","chingo","gek","none","none","none"]
 
 onready var music_player: MusicPlayer = $MusicPlayer
+onready var sound_player: SoundPlayer = $SoundPlayer
 
 func _ready():
 	$GameView.hide()
@@ -151,6 +152,8 @@ func format_time(elapsed):
 func start_game():
 	# Start countdown; stop music for now
 	music_player.stop()
+	for node in get_tree().get_nodes_in_group("Engine"):
+		node.play()
 	$GameView/Countdown.start_countdown()
 	$GameView.show()
 	$CharacterSelect.hide()
@@ -172,6 +175,9 @@ func _on_Player_race_finished():
 	$GameView.hide()
 	$FinishScreen.show()
 	$FinishScreen/RestartButton.grab_focus()
+	
+	music_player.stop()
+	sound_player.play("Other")
 	$Start.hide()
 
 func _on_StartButton_pressed():

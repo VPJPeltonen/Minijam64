@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -84,8 +84,7 @@
 [ext_resource path="res://Audio/Music/firstplace!.ogg" type="AudioStream" id=82]
 [ext_resource path="res://Audio/Music/loser.ogg" type="AudioStream" id=83]
 [ext_resource path="res://Audio/Music/other.ogg" type="AudioStream" id=84]
-[ext_resource path="res://Audio/Sound/242740__marlonhj__engine.wav" type="AudioStream" id=85]
-[ext_resource path="res://Scenes/SoundPlayer3D.tscn" type="PackedScene" id=86]
+[ext_resource path="res://Scenes/Engine.tscn" type="PackedScene" id=85]
 
 [sub_resource type="SphereShape" id=1]
 radius = 3.06085
@@ -420,6 +419,9 @@ script = ExtResource( 62 )
 move_speed = 2450.0
 racer_name = "Cucaracha"
 kart_type = "Cucaracha"
+
+[node name="Engine" parent="AIKarts/AI3" instance=ExtResource( 85 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 1.30351, -12.0787 )
 
 [node name="Cart" type="Spatial" parent="AIKarts/AI3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
@@ -785,13 +787,7 @@ gek = ExtResource( 65 )
 [node name="Cart" type="Spatial" parent="Player"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.137276, -1.63345, -7.57265 )
 
-[node name="SoundPlayer3D" parent="Player/Cart" instance=ExtResource( 86 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-
-[node name="Engine" type="AudioStreamPlayer3D" parent="Player/Cart/SoundPlayer3D"]
-stream = ExtResource( 85 )
-unit_db = 18.188
-bus = "SFX"
+[node name="Engine" parent="Player/Cart" instance=ExtResource( 85 )]
 
 [node name="Cart" type="RigidBody" parent="Player/Cart" groups=[
 "Cart",
@@ -933,8 +929,8 @@ transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0
 script = ExtResource( 4 )
 camera_speed = 4.0
 
-[node name="Listener" type="Listener" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.231445, -0.885546, -7.59731 )
+[node name="Listener" type="Listener" parent="Player/Camera"]
+transform = Transform( 0.5, 4.65661e-10, 9.31323e-10, 0, 0.482963, -0.129409, -9.31323e-10, 0.129409, 0.482963, -0.115725, -0.998396, -6.91943 )
 current = true
 
 [node name="VideoGameUI" type="Control" parent="."]

@@ -591,7 +591,6 @@ visible = false
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 320, 200 )
 render_target_v_flip = true
-audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 
 [node name="VideoGame" parent="Viewport" instance=ExtResource( 3 )]
