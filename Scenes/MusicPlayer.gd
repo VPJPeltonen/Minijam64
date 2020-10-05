@@ -16,10 +16,18 @@ func play(song : String):
 		
 	# Load new song
 	if (song_map.has(song)):
-		song_map[song].play(0)
+		currentSong = song_map[song]
+		currentSong.play(0)
 		
-func pause(): if currentSong != null: currentSong.pause()
+func pause():
+	if currentSong != null:
+		currentSong.pause()
 
-func unpause(): if currentSong != null: currentSong.play()
+func unpause():
+	if currentSong != null:
+		currentSong.play()
 
-func stop(): if currentSong != null: currentSong.stop()
+func stop():
+	print("stopping")
+	if currentSong != null:
+		currentSong.stop()

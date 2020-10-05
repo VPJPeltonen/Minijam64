@@ -11,5 +11,5 @@ dest_files=[ "res://.import/countdown_tick.ogg-40da6992fce6af901d2c3aadba9f720f.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

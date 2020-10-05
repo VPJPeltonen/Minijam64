@@ -73,6 +73,9 @@ func show_credits():
 func _on_Timer_timeout():
 	camera_animator.play("Camera Intro")
 	controller.play("ControlerUP")
+	
+	# Start playing title screen music
+	$Viewport/VideoGame/VideoGameUI/UI/MusicPlayer.play("Title")
 	GAME.game_on = true
 	
 func _on_TransitionTimer_timeout():

@@ -132,6 +132,7 @@ func select_character():
 			emit_signal("car_select","chingo")
 		5:
 			emit_signal("car_select","gek")
+	print("gaming")
 	start_game()
 	
 func check_race_order():
@@ -148,6 +149,7 @@ func format_time(elapsed):
 	return str_elapsed
 
 func start_game():
+	print("gaming")
 	# Start countdown; stop music for now
 	music_player.stop()
 	$GameView/Countdown.start_countdown()
@@ -180,7 +182,6 @@ func _on_StartButton_pressed():
 	$CharacterSelect.show()
 	$FinishScreen.hide()
 	$Start.hide()
-	music_player.play("Title")
 
 func _on_Cart_powerup_gained(power_up):
 	$GameView/PowerUP.show()

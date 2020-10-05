@@ -11,5 +11,5 @@ dest_files=[ "res://.import/countdown_done.ogg-4001dcce6d9c5ab39dcae47f125d8cba.
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
