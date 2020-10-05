@@ -91,12 +91,12 @@ radius = 3.06085
 height = 0.632367
 
 [sub_resource type="BoxShape" id=4]
-extents = Vector3( 29.2735, 21.6738, 1 )
+extents = Vector3( 43.066, 42.3978, 1 )
 
 [sub_resource type="CubeMesh" id=5]
 
 [sub_resource type="BoxShape" id=6]
-extents = Vector3( 87.6864, 33.0655, 1 )
+extents = Vector3( 87.6864, 47.4204, 1 )
 
 [sub_resource type="CylinderMesh" id=7]
 
@@ -105,7 +105,7 @@ flags_transparent = true
 albedo_color = Color( 0.160784, 0.34902, 0.670588, 0.654902 )
 
 [sub_resource type="BoxShape" id=9]
-extents = Vector3( 20.3198, 1, 15.5919 )
+extents = Vector3( 460.307, 1, 325.347 )
 
 [sub_resource type="CapsuleMesh" id=10]
 
@@ -554,6 +554,7 @@ script = ExtResource( 51 )
 [node name="Area" type="Area" parent="TrackControls/Checkpoint"]
 
 [node name="CollisionShape" type="CollisionShape" parent="TrackControls/Checkpoint/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.18757, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="TrackControls/Checkpoint"]
@@ -579,6 +580,7 @@ num = 1
 [node name="Area" type="Area" parent="TrackControls/Checkpoint2"]
 
 [node name="CollisionShape" type="CollisionShape" parent="TrackControls/Checkpoint2/Area"]
+transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0, 0 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="TrackControls/Checkpoint2"]
@@ -604,6 +606,7 @@ num = 2
 [node name="Area" type="Area" parent="TrackControls/Checkpoint3"]
 
 [node name="CollisionShape" type="CollisionShape" parent="TrackControls/Checkpoint3/Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6815, 0, 0.440109 )
 shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="TrackControls/Checkpoint3"]
@@ -654,7 +657,8 @@ num = 4
 [node name="Area" type="Area" parent="TrackControls/Checkpoint5"]
 
 [node name="CollisionShape" type="CollisionShape" parent="TrackControls/Checkpoint5/Area"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53.8714, 0, 3.59885 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60.9112, 0, 4.06915 )
+visible = false
 shape = SubResource( 6 )
 
 [node name="MeshInstance" type="MeshInstance" parent="TrackControls/Checkpoint5"]
@@ -798,6 +802,48 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 278.374, 16.4191, -52.9591 )
 
 [node name="balloon_pink13" parent="Enviroment" instance=ExtResource( 81 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 295.372, 13.027, -32.6281 )
+
+[node name="balloon_pink19" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 219.635, 8.58627, 52.0716 )
+
+[node name="balloon_pink26" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 197.65, 3.59489, 123.932 )
+
+[node name="balloon_pink27" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 178.175, 15.2309, 137.145 )
+
+[node name="balloon_pink28" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 134.021, 12.827, 143.615 )
+
+[node name="balloon_pink29" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 82.0092, 0.558394, 141.447 )
+
+[node name="balloon_pink16" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 165.959, 2.40772, 51.2616 )
+
+[node name="balloon_pink17" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 151.12, 5.31002, 55.2375 )
+
+[node name="balloon_pink20" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 58.8562, 2.2642, 55.2375 )
+
+[node name="balloon_pink21" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 50.4404, 7.63984, 42.9933 )
+
+[node name="balloon_pink22" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 37.6212, 14.6033, 32.4143 )
+
+[node name="balloon_pink23" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8594, 14.6033, 29.8658 )
+
+[node name="balloon_pink24" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79673, 7.47244, 32.0705 )
+
+[node name="balloon_pink25" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35013, 6.00984, 50.5774 )
+
+[node name="balloon_pink18" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 129.686, 2.99393, 51.2872 )
 
 [node name="Player" type="Spatial" parent="."]
 transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -40.308, 1.96115, 20.4547 )
