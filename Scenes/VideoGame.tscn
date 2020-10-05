@@ -322,7 +322,7 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 24 )
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=30]
 resource_name = "Countdown"
 length = 8.0
 tracks/0/type = "method"
@@ -368,7 +368,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="ShaderMaterial" id=30]
+[sub_resource type="ShaderMaterial" id=31]
 shader = ExtResource( 10 )
 shader_param/boost = 1.2
 shader_param/grille_opacity = 1.0
@@ -761,7 +761,43 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 88.7449, 1.13282, 99.274
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.3306, 0 )
 
 [node name="balloon_pink" parent="Enviroment" instance=ExtResource( 81 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.744, 4.07902, -75.4591 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.744, 2.89211, -75.4591 )
+
+[node name="balloon_pink2" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5088, 8.62112, -82.9623 )
+
+[node name="balloon_pink6" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.07868, 12.468, -103.472 )
+
+[node name="balloon_pink3" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.7212, 15.5791, -132.938 )
+
+[node name="balloon_pink7" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 92.7212, 16.7882, -139.436 )
+
+[node name="balloon_pink4" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.805, 18.6691, -136.936 )
+
+[node name="balloon_pink5" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 133.592, 18.0558, -153.086 )
+
+[node name="balloon_pink8" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 157.653, 18.4202, -139.811 )
+
+[node name="balloon_pink9" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 208.322, 1.51885, -144.742 )
+
+[node name="balloon_pink10" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 254.394, 5.99639, -77.6868 )
+
+[node name="balloon_pink11" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 265.913, 9.38073, -69.0091 )
+
+[node name="balloon_pink12" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 278.374, 16.4191, -52.9591 )
+
+[node name="balloon_pink13" parent="Enviroment" instance=ExtResource( 81 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 295.372, 13.027, -32.6281 )
 
 [node name="Player" type="Spatial" parent="."]
 transform = Transform( 0.0152256, 0, 0.499768, 0, 0.5, 0, -0.499768, 0, 0.0152256, -40.308, 1.96115, 20.4547 )
@@ -1836,7 +1872,7 @@ __meta__ = {
 one_shot = true
 
 [node name="CountdownAnim" type="AnimationPlayer" parent="VideoGameUI/UI/GameView/Countdown"]
-anims/Countdown = SubResource( 31 )
+anims/Countdown = SubResource( 30 )
 
 [node name="PowerUP" type="TextureRect" parent="VideoGameUI/UI/GameView"]
 visible = false
@@ -1873,7 +1909,7 @@ stream = ExtResource( 80 )
 bus = "SFX"
 
 [node name="Shader" type="TextureRect" parent="VideoGameUI"]
-material = SubResource( 30 )
+material = SubResource( 31 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 12 )

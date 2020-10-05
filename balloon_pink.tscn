@@ -5,7 +5,7 @@
 [ext_resource path="res://Map64/Material_006.material" type="Material" id=3]
 
 [sub_resource type="CylinderShape" id=1]
-radius = 2.0
+radius = 2.53217
 height = 6.0
 
 [node name="balloon_pink" instance=ExtResource( 2 )]
