@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://Scripts/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/CartVisual.gd" type="Script" id=2]
@@ -81,6 +81,10 @@
 [ext_resource path="res://Audio/Sound/intro.ogg" type="AudioStream" id=79]
 [ext_resource path="res://Audio/Sound/optionpick.ogg" type="AudioStream" id=80]
 [ext_resource path="res://balloon_pink.tscn" type="PackedScene" id=81]
+[ext_resource path="res://Audio/Music/firstplace!.ogg" type="AudioStream" id=82]
+[ext_resource path="res://Audio/Music/loser.ogg" type="AudioStream" id=83]
+[ext_resource path="res://Audio/Music/other.ogg" type="AudioStream" id=84]
+[ext_resource path="res://Scenes/Engine.tscn" type="PackedScene" id=85]
 
 [sub_resource type="SphereShape" id=1]
 radius = 3.06085
@@ -415,6 +419,9 @@ script = ExtResource( 62 )
 move_speed = 2450.0
 racer_name = "Cucaracha"
 kart_type = "Cucaracha"
+
+[node name="Engine" parent="AIKarts/AI3" instance=ExtResource( 85 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.53674e-07, 1.30351, -12.0787 )
 
 [node name="Cart" type="Spatial" parent="AIKarts/AI3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30351, -12.0787 )
@@ -862,6 +869,8 @@ gek = ExtResource( 65 )
 [node name="Cart" type="Spatial" parent="Player"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0.137276, -1.63345, -7.57265 )
 
+[node name="Engine" parent="Player/Cart" instance=ExtResource( 85 )]
+
 [node name="Cart" type="RigidBody" parent="Player/Cart" groups=[
 "Cart",
 "Player",
@@ -1001,6 +1010,10 @@ anims/FireON = SubResource( 24 )
 transform = Transform( 1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4.62497, 5.25321 )
 script = ExtResource( 4 )
 camera_speed = 4.0
+
+[node name="Listener" type="Listener" parent="Player/Camera"]
+transform = Transform( 0.5, 4.65661e-10, 9.31323e-10, 0, 0.482963, -0.129409, -9.31323e-10, 0.129409, 0.482963, -0.115725, -0.998396, -6.91943 )
+current = true
 
 [node name="VideoGameUI" type="Control" parent="."]
 anchor_right = 1.0
@@ -1952,6 +1965,18 @@ bus = "SFX"
 
 [node name="OptionPick" type="AudioStreamPlayer" parent="VideoGameUI/UI/SoundPlayer"]
 stream = ExtResource( 80 )
+bus = "SFX"
+
+[node name="Loser" type="AudioStreamPlayer" parent="VideoGameUI/UI/SoundPlayer"]
+stream = ExtResource( 83 )
+bus = "SFX"
+
+[node name="Other" type="AudioStreamPlayer" parent="VideoGameUI/UI/SoundPlayer"]
+stream = ExtResource( 84 )
+bus = "SFX"
+
+[node name="Winner" type="AudioStreamPlayer" parent="VideoGameUI/UI/SoundPlayer"]
+stream = ExtResource( 82 )
 bus = "SFX"
 
 [node name="Shader" type="TextureRect" parent="VideoGameUI"]
